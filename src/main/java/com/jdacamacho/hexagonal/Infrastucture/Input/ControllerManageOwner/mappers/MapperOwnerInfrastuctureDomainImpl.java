@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerDTORequest;
-import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerUpdateDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse.OwnerDTOResponse;
 
 @Service
@@ -21,11 +20,6 @@ public class MapperOwnerInfrastuctureDomainImpl implements MapperOwnerInfrastuct
 
     @Override
     public Owner mapRequestToModel(OwnerDTORequest request) {
-        return this.mapper.map(request, Owner.class);
-    }
-
-    @Override
-    public Owner mapRequestToModel(OwnerUpdateDTORequest request) {
         return this.mapper.map(request, Owner.class);
     }
 

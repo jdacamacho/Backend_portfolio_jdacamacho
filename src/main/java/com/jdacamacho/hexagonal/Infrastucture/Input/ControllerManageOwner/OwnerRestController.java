@@ -22,7 +22,6 @@ import com.jdacamacho.hexagonal.Application.Input.ManageOwnerCUIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerDTORequest;
-import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerUpdateDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse.OwnerDTOResponse;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.mappers.MapperOwnerInfrastuctureDomainInt;
 
@@ -75,7 +74,7 @@ public class OwnerRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody OwnerUpdateDTORequest request, BindingResult result){
+    public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody OwnerDTORequest request, BindingResult result){
         Owner owner = this.mapper.mapRequestToModel(request);
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);

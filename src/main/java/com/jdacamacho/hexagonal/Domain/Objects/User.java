@@ -57,6 +57,7 @@ public class User {
         this.setLastNames(user.getLastNames());
         this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
+        this.setRoles(user.getRoles());
     }
 
 }
