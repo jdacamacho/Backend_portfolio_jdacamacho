@@ -24,6 +24,10 @@ public class OwnerEntity extends UserEntity{
     @OneToOne(fetch = FetchType.EAGER , cascade = { CascadeType.ALL } ,mappedBy = "objOwner")
     private AddressEntity address;
 
+    public OwnerEntity(){
+        super();
+    }
+
     public OwnerEntity(long documentNumber, String documentType, String names,
                     String lastNames,String username, String password, List<RoleEntity> roles,
                     long nit, String propertyName, AddressEntity address){
