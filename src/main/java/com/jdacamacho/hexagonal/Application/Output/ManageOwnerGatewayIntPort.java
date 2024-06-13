@@ -10,6 +10,6 @@ public interface ManageOwnerGatewayIntPort {
     public Owner findById(long documentNumber);
     public boolean existsById(long documentNumber);
     public boolean existsByUsername(String username);
-    public boolean findByPropertyName(String propertyName);
-    public boolean findByNit(long nit);
+    public boolean existsPropertyName(String propertyName);
+    public boolean existsByNit(long nit);
 }

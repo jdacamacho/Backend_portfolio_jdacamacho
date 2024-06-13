@@ -53,8 +53,7 @@ public class ManageUserGatewayImplAdapter implements ManageUserGatewayIntPort{
 
     @Override
     public boolean existsByUsername(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsByUsername'");
+        return this.serviceBD.existsByUsername(username);
     }
 
 }
