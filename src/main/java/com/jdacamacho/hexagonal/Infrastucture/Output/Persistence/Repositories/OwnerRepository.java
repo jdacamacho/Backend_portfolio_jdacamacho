@@ -7,6 +7,7 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.OwnerE
 
 @Repository
 public interface OwnerRepository extends JpaRepository<OwnerEntity, Long>{
+    public boolean existsByDocumentNumber(long documentNumber);
     public boolean existsByPropertyName(String propertyName);
     public boolean existsByUsername(String username);
     public boolean existsByNit(long nit);

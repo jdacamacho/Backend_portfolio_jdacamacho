@@ -28,10 +28,10 @@ public class OwnerEntity extends UserEntity{
         super();
     }
 
-    public OwnerEntity(long documentNumber, String documentType, String names,
+    public OwnerEntity(long id,long documentNumber, String documentType, String names,
                     String lastNames,String username, String password, List<RoleEntity> roles,
                     long nit, String propertyName, AddressEntity address){
-        super(documentNumber, documentType, names, lastNames, username, password, roles);
+        super(id,documentNumber, documentType, names, lastNames, username, password, roles);
         this.nit = nit;
         this.propertyName = propertyName;
         this.address = address;

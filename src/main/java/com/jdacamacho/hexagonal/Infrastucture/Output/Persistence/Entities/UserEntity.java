@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -23,7 +25,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserEntity {
     @Id
-    @Column(name = "user_document_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private long id;
+    @Column(name = "user_document_number", nullable = false, unique = true)
     private long documentNumber;
     @Column(name = "user_document_type", nullable = false , length = 20)
     private String documentType;

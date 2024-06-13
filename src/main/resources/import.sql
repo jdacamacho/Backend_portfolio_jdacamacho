@@ -1,0 +1,10 @@
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (1, 'John', 'Doe', 'johnny');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (2, 'Jane', 'Smith', 'janey');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (3, 'Alice', 'Johnson', 'alicej');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (4, 'Bob', 'Brown', 'bobby');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (5, 'Charlie', 'Davis', 'charlied');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (6, 'David', 'Miller', 'dave');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (7, 'Eva', 'Martinez', 'evam');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (8, 'Frank', 'Garcia', 'frankg');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (9, 'Grace', 'Wilson', 'gracey');
+INSERT INTO Users (idUser, nameUser, lastNameUser, nickNameUser) VALUES (10, 'Henry', 'Moore', 'henrym');

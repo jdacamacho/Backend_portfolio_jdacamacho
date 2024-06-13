@@ -39,10 +39,16 @@ public class ManageUserGatewayImplAdapter implements ManageUserGatewayIntPort{
     }
 
     @Override
-    public User findById(long documentNumber) {
-        UserEntity data = this.serviceBD.findById(documentNumber).get();
+    public User findById(long id) {
+        UserEntity data = this.serviceBD.findById(id).get();
         User response = this.mapper.map(data, User.class);
         return response;
+    }
+
+    
+    @Override
+    public boolean existsByDocumentNumber(long documentNumber) {
+        return this.existsByDocumentNumber(documentNumber);
     }
 
     @Override

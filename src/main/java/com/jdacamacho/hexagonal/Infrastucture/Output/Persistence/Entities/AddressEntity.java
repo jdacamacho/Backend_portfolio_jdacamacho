@@ -2,10 +2,9 @@ package com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -17,7 +16,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class AddressEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     private long id;
     @Column(name = "address_street" , nullable = false , length = 20)
@@ -34,6 +32,7 @@ public class AddressEntity {
     private String country;
 
     @OneToOne
+    @MapsId
     @JoinColumn(name = "user_document_number")
     private OwnerEntity objOwner;
 

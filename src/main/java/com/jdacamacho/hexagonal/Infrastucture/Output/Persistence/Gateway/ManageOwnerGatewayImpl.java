@@ -39,15 +39,20 @@ public class ManageOwnerGatewayImpl implements ManageOwnerGatewayIntPort{
     }
 
     @Override
-    public Owner findById(long documentNumber) {
-        OwnerEntity data = this.serviceBD.findById(documentNumber).get();
+    public Owner findById(long id) {
+        OwnerEntity data = this.serviceBD.findById(id).get();
         Owner response = this.mapper.map(data, Owner.class);
         return response;
     }
 
     @Override
-    public boolean existsById(long documentNumber) {
-        return this.serviceBD.existsById(documentNumber);
+    public boolean existsById(long id) {
+        return this.serviceBD.existsById(id);
+    }
+
+    @Override
+    public boolean existsByDocumentNumber(long documentNumber) {
+        return this.serviceBD.existsByDocumentNumber(documentNumber);
     }
 
     @Override
