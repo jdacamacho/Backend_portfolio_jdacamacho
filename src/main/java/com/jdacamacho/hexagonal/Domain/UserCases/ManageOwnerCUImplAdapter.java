@@ -93,7 +93,7 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
     }
 
     @Override
-    public Owner findById(long id) {
+    public Owner findOwnerById(long id) {
         Owner objOwner = null;
         if(!this.gatewayOwner.existsById(id)){
             this.exceptionFormatter.responseEntityNotFound("Owner with that ID was not found");

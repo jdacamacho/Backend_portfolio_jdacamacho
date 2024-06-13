@@ -92,7 +92,7 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
     }
 
     @Override
-    public User findById(long idUser) {
+    public User findUserById(long idUser) {
         User objUser = null;
         if(!this.gatewayUser.existsById(idUser)){
             this.exceptionFormatter.responseEntityNotFound("User with that id was not found...");

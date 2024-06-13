@@ -1,7 +1,5 @@
 package com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse;
 
-import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerDTORequest;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

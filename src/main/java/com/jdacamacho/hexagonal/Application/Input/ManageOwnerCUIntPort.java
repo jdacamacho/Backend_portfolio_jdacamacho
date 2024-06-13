@@ -8,5 +8,5 @@ public interface ManageOwnerCUIntPort {
     public List<Owner> listOwners();
     public Owner saverOwner(Owner owner);
     public Owner updateOwner(long id, Owner owner);
-    public Owner findById(long id);
+    public Owner findOwnerById(long id);
 }
