@@ -7,5 +7,5 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.UserEn
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity,Long>{
-    
+    public boolean existsByUsername(String username);
 }
