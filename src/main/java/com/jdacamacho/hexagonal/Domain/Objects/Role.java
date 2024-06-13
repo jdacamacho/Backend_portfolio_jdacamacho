@@ -1,4 +1,4 @@
-package com.jdacamacho.hexagonal.Domain.Models;
+package com.jdacamacho.hexagonal.Domain.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

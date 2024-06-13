@@ -7,7 +7,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Application.Output.ManageRolegatewayIntPort;
-import com.jdacamacho.hexagonal.Domain.Models.Role;
+import com.jdacamacho.hexagonal.Domain.Objects.Role;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.RoleEntity;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.RoleRepository;
 

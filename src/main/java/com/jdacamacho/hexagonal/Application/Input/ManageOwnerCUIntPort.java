@@ -2,7 +2,7 @@ package com.jdacamacho.hexagonal.Application.Input;
 
 import java.util.List;
 
-import com.jdacamacho.hexagonal.Domain.Models.Owner;
+import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 
 public interface ManageOwnerCUIntPort {
     public List<Owner> listOwners();

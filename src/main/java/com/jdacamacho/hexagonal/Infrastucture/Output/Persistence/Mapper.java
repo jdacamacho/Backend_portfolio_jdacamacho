@@ -5,7 +5,7 @@ import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.jdacamacho.hexagonal.Domain.Models.Address;
+import com.jdacamacho.hexagonal.Domain.Objects.Address;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.AddressEntity;
 
 @Configuration

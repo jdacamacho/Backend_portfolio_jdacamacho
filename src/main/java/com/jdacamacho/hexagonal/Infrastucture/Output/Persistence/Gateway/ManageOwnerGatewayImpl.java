@@ -7,7 +7,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
-import com.jdacamacho.hexagonal.Domain.Models.Owner;
+import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.OwnerEntity;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.OwnerRepository;
 

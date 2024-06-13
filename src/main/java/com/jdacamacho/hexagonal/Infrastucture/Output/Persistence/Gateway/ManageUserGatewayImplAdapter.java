@@ -7,7 +7,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Application.Output.ManageUserGatewayIntPort;
-import com.jdacamacho.hexagonal.Domain.Models.User;
+import com.jdacamacho.hexagonal.Domain.Objects.User;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.UserEntity;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.UserRepository;
 

@@ -28,16 +28,22 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private long id;
+
     @Column(name = "user_document_number", nullable = false, unique = true)
     private long documentNumber;
+
     @Column(name = "user_document_type", nullable = false , length = 20)
     private String documentType;
+
     @Column(name = "user_names", nullable = false , length = 80)
     private String names;
+
     @Column(name = "user_last_names", nullable = false , length = 80)
     private String lastNames;
+
     @Column(name = "user_user_name", nullable = false , unique = true , length = 20)
     private String username;
+    
     @Column(name = "user_password", nullable = false , length = 100)
     private String password;
 

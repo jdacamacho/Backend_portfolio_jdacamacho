@@ -2,7 +2,7 @@ package com.jdacamacho.hexagonal.Application.Output;
 
 import java.util.List;
 
-import com.jdacamacho.hexagonal.Domain.Models.Owner;
+import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 
 public interface ManageOwnerGatewayIntPort {
     public List<Owner> findAll();
