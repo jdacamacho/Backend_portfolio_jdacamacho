@@ -48,7 +48,7 @@ public class ManageUserGatewayImplAdapter implements ManageUserGatewayIntPort{
     
     @Override
     public boolean existsByDocumentNumber(long documentNumber) {
-        return this.existsByDocumentNumber(documentNumber);
+        return this.serviceBD.existsByDocumentNumber(documentNumber);
     }
 
     @Override
