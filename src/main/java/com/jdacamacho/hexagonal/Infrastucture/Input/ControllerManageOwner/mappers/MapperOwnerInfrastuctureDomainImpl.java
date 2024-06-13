@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerDTORequest;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerUpdateDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse.OwnerDTOResponse;
 
 @Service
@@ -24,6 +25,11 @@ public class MapperOwnerInfrastuctureDomainImpl implements MapperOwnerInfrastuct
     }
 
     @Override
+    public Owner mapRequestToModel(OwnerUpdateDTORequest request) {
+        return this.mapper.map(request, Owner.class);
+    }
+
+    @Override
     public OwnerDTOResponse mapModelToResponse(Owner model) {
         return this.mapper.map(model, OwnerDTOResponse.class);
     }
@@ -32,5 +38,6 @@ public class MapperOwnerInfrastuctureDomainImpl implements MapperOwnerInfrastuct
     public List<OwnerDTOResponse> mapModelToResponse(List<Owner> models) {
         return this.mapper.map(models, new TypeToken<List<OwnerDTOResponse>>(){}.getType());
     }
+
 
 }

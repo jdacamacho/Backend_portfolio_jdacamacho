@@ -10,22 +10,26 @@ import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.OwnerEntity;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.OwnerRepository;
+import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.UserRepository;
 
 @Service
 public class ManageOwnerGatewayImpl implements ManageOwnerGatewayIntPort{
-    private final OwnerRepository serviceBD;
+    private final OwnerRepository serviceBDOwner;
+    private final UserRepository serviceBDUser;
     private final ModelMapper mapper;
 
-    public ManageOwnerGatewayImpl(OwnerRepository serviceBD, 
+    public ManageOwnerGatewayImpl(OwnerRepository serviceBDOwner, 
+                                UserRepository serviceBDUser,
                                 ModelMapper mapper){
-        this.serviceBD = serviceBD;
+        this.serviceBDOwner = serviceBDOwner;
+        this.serviceBDUser = serviceBDUser;
         this.mapper = mapper;
     }
 
 
     @Override
     public List<Owner> findAll() {
-        Iterable<OwnerEntity> data = this.serviceBD.findAll();
+        Iterable<OwnerEntity> data = this.serviceBDOwner.findAll();
         List<Owner> response = this.mapper.map(data, new TypeToken<List<Owner>>(){}.getType());
         return response;
     }
@@ -33,41 +37,41 @@ public class ManageOwnerGatewayImpl implements ManageOwnerGatewayIntPort{
     @Override
     public Owner save(Owner owner) {
         OwnerEntity ownerToSave = this.mapper.map(owner, OwnerEntity.class);
-        OwnerEntity ownerSaved = this.serviceBD.save(ownerToSave);
+        OwnerEntity ownerSaved = this.serviceBDOwner.save(ownerToSave);
         Owner response = this.mapper.map(ownerSaved, Owner.class);
         return response;
     }
 
     @Override
     public Owner findById(long id) {
-        OwnerEntity data = this.serviceBD.findById(id).get();
+        OwnerEntity data = this.serviceBDOwner.findById(id).get();
         Owner response = this.mapper.map(data, Owner.class);
         return response;
     }
 
     @Override
     public boolean existsById(long id) {
-        return this.serviceBD.existsById(id);
+        return this.serviceBDOwner.existsById(id);
     }
 
     @Override
     public boolean existsByDocumentNumber(long documentNumber) {
-        return this.serviceBD.existsByDocumentNumber(documentNumber);
+        return this.serviceBDUser.existsByDocumentNumber(documentNumber);
     }
 
     @Override
     public boolean existsByUsername(String username) {
-        return this.serviceBD.existsByUsername(username);
+        return this.serviceBDUser.existsByUsername(username);
     }
 
     @Override
     public boolean existsPropertyName(String propertyName) {
-        return this.existsPropertyName(propertyName);
+        return this.serviceBDOwner.existsByPropertyName(propertyName);
     }
 
     @Override
     public boolean existsByNit(long nit) {
-        return this.existsByNit(nit);
+        return this.serviceBDOwner.existsByNit(nit);
     }
     
 }

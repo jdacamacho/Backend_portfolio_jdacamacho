@@ -1,18 +1,13 @@
 package com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AddressDTORequest {
-
-    @NotNull(message = "Id cannot be null")
-    private long id;
-
+public class AddressUpdateDTORequest {
     @NotBlank(message = "Street cannot be blank")
     @Size(min = 3, max = 20, message = "Street must be between 3 and 20 characters")
     private String street;
@@ -37,7 +32,7 @@ public class AddressDTORequest {
     @Size(min = 3, max = 20, message = "Country must be between 3 and 50 characters")
     private String country;
 
-    public AddressDTORequest(){
-
+    public AddressUpdateDTORequest(){
+        
     }
 }
