@@ -9,6 +9,7 @@ import com.jdacamacho.hexagonal.Application.Output.ManageRolegatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageUserGatewayIntPort;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageOwnerCUImplAdapter;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageUserCUImplAdapter;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 
 @Configuration
 public class BeanConfigurations {
@@ -25,5 +26,10 @@ public class BeanConfigurations {
                                                 ManageRolegatewayIntPort gatewayRole,
                                                 ExceptionFormatterIntPort exceptionFormatter){
         return new ManageOwnerCUImplAdapter(gatewayOwner, gatewayRole, exceptionFormatter);
+    }
+
+    @Bean
+    public ErrorCatcher createErrorCatcher(){
+        return new ErrorCatcher();
     }
 }
