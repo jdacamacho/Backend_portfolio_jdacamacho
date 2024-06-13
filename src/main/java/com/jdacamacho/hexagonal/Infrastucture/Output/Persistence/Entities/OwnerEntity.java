@@ -2,6 +2,7 @@ package com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,7 +21,7 @@ public class OwnerEntity extends UserEntity{
     private long nit;
     @Column(name = "owner_property_name", nullable = false, unique = true, length = 80)
     private String propertyName;
-    @OneToOne(fetch = FetchType.EAGER , mappedBy = "objOwner")
+    @OneToOne(fetch = FetchType.EAGER , cascade = { CascadeType.ALL } ,mappedBy = "objOwner")
     private AddressEntity address;
 
     public OwnerEntity(long documentNumber, String documentType, String names,
