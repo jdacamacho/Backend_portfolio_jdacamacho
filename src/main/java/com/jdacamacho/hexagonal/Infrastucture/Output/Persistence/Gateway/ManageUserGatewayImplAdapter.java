@@ -50,10 +50,4 @@ public class ManageUserGatewayImplAdapter implements ManageUserGatewayIntPort{
         return this.serviceBD.existsById(idAction);
     }
 
-
-    @Override
-    public boolean existsByNickName(String nickName) {
-        return this.serviceBD.existsByNickNameUser(nickName);
-    }
-    
 }

@@ -9,5 +9,4 @@ public interface ManageUserGatewayIntPort {
     public User save(User user);
     public User findById(long userId);
     public boolean existsById(long idAction);
-    public boolean existsByNickName(String nickName);
 }
