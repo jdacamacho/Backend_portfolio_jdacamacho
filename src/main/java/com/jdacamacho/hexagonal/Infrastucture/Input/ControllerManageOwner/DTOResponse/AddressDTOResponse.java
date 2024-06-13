@@ -15,9 +15,8 @@ public class AddressDTOResponse {
     private String neighborhood;
     private String city;
     private String country;
-    private OwnerDTORequest objOwner;
 
     public AddressDTOResponse(){
-        
+
     }
 }
