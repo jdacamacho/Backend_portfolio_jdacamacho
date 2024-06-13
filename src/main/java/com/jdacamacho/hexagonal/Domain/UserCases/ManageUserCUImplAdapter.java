@@ -43,7 +43,7 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
         if(!user.isValidDocumentType()){
             this.exceptionFormatter.responseBusinessRuleViolates("User has a document type not valid");
         }
-        if(!user.rolesAreValid(this.gatewayRole.findAll())){
+        if(!user.rolesAreValid(this.gatewayRole.findAllExceptAdm())){
             this.exceptionFormatter.responseBusinessRuleViolates("User roles are not valid");
         }
         if(user.hasDuplicatedRoles()){
