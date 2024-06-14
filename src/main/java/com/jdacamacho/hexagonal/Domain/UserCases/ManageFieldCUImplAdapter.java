@@ -9,6 +9,7 @@ import com.jdacamacho.hexagonal.Application.Output.ManageFieldGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.Field;
 import com.jdacamacho.hexagonal.Domain.Objects.Owner;
+import com.jdacamacho.hexagonal.Domain.Objects.Schedule;
 
 public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
     private final ManageFieldGatewayIntPort gatewayField;
@@ -60,6 +61,15 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
     }
 
+    
+    @Override
+    public List<Schedule> getSchedulesById(long idField) {
+        if(!this.gatewayField.existById(idField)){
+            this.exceptionFormatter.responseEntityNotFound("Field was not found...");
+        }
+        return this.gatewayField.findById(idField).getSchedules();
+    }
+
     @Override
     public Field saveField(long idOwner, Field field) {
         Owner objOwner = null;
@@ -70,6 +80,7 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
         objOwner = this.gatewayOwner.findById(idOwner);
         field.asignOwner(objOwner);
+        field.asignScheduleToField();
         objField = this.gatewayField.save(field);
         return objField;
     }
@@ -105,6 +116,5 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
         }
         return this.gatewayField.findById(idField);
     }
-
 
 }

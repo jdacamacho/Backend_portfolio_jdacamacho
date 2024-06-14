@@ -25,10 +25,16 @@ public class Field {
         this.setObjOwner(owner);
     }
 
+    public void asignScheduleToField(){
+        this.getSchedules().forEach(schedule -> schedule.setObjField(this));
+    }
+
     public void update(Field field){
         this.setName(field.getName());
         this.setNumberPlayers(field.getNumberPlayers());
         this.setState(field.isState());
+        this.setSchedules(field.getSchedules());
+        this.asignScheduleToField();
     }
 
 }
