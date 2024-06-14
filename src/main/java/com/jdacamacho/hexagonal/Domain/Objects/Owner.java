@@ -11,6 +11,7 @@ public class Owner extends User {
     private long nit;
     private String propertyName;
     private Address address;
+    private List<Field> fields;
 
     public Owner(){
         super();
