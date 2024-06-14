@@ -8,7 +8,7 @@ public interface ManageOwnerGatewayIntPort {
     public List<Owner> findAll();
     public Owner save(Owner owner);
     public Owner findById(long id);
-    public Owner findOwnerByPropertyName(String propertyName);
+    public List<Owner> findOwnerByPropertyName(String propertyName);
     public boolean existsById(long id);
     public boolean existsPropertyName(String propertyName);
     public boolean existsByNit(long nit);

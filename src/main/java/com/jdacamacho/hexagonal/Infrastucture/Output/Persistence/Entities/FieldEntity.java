@@ -32,7 +32,7 @@ public class FieldEntity {
     @Column(name = "field_state" , nullable = false)
     private boolean state;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "field_owner_id")
     private OwnerEntity objOwner;
 

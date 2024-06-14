@@ -1,5 +1,6 @@
 package com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class ReservationEntity {
     @Column(name = "reservation_id")
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "reservation_field_id")
     private FieldEntity objField;
 

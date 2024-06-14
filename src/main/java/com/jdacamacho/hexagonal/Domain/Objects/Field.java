@@ -21,4 +21,14 @@ public class Field {
         this.reservations = new ArrayList<>();
     }
 
+    public void asignOwner(Owner owner){
+        this.setObjOwner(owner);
+    }
+
+    public void update(Field field){
+        this.setName(field.getName());
+        this.setNumberPlayers(field.getNumberPlayers());
+        this.setState(field.isState());
+    }
+
 }

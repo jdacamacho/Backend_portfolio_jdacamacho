@@ -46,9 +46,9 @@ public class ManageOwnerGatewayImpl implements ManageOwnerGatewayIntPort{
     }
 
     @Override
-    public Owner findOwnerByPropertyName(String propertyName) {
-        OwnerEntity data = this.serviceBD.findByPropertyName(propertyName);
-        Owner response = this.mapper.map(data, Owner.class);
+    public List<Owner> findOwnerByPropertyName(String propertyName) {
+        List<OwnerEntity> data = this.serviceBD.findByPropertyNameContainingIgnoreCase(propertyName);
+        List<Owner> response = this.mapper.map(data, new TypeToken<List<Owner>>(){}.getType());
         return response;
     }
 
