@@ -24,8 +24,8 @@ public class ScheduleEntity {
     @Column(name = "schedule_booking_time", length = 30, nullable = false)
     private String bookingTime;
 
-    @Column(name = "schedule_hour", length = 10, nullable = false)
-    private String hour;
+    @Column(name = "schedule_hour", nullable = false)
+    private int hour;
 
     @Column(name = "schedule_price" , nullable = false)
     private double price;

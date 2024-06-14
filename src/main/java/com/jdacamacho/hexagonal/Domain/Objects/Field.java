@@ -25,6 +25,10 @@ public class Field {
         this.setObjOwner(owner);
     }
 
+    public void asigFieldToOwner(){
+        this.getObjOwner().getFields().forEach(field -> field.setObjOwner(this.getObjOwner()));
+    }
+
     public void asignScheduleToField(){
         this.getSchedules().forEach(schedule -> schedule.setObjField(this));
     }

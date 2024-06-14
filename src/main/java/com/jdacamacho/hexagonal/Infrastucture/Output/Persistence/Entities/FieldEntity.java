@@ -14,9 +14,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Entity
 @Table(name = "Fields")
+@Data
+@AllArgsConstructor
 public class FieldEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +36,14 @@ public class FieldEntity {
     @Column(name = "field_state" , nullable = false)
     private boolean state;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "field_owner_id")
     private OwnerEntity objOwner;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true, mappedBy = "objField")
     List<ScheduleEntity> schedules;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "objField")
+    @OneToMany(mappedBy = "objField")
     List<ReservationEntity> reservations;
 
     public FieldEntity(){

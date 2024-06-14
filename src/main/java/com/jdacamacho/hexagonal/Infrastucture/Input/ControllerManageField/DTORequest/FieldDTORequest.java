@@ -15,6 +15,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class FieldDTORequest {
     @NotBlank(message = "Name cannot be blank")
+    @Size(min = 2, max = 20, message = "Name must be between 2 and 20 characters")
     private String name;
     
     @PositiveOrZero(message = "Number of players must be a positive number or zero")

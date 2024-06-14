@@ -7,9 +7,11 @@ import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageRolegatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageUserGatewayIntPort;
+import com.jdacamacho.hexagonal.Domain.UserCases.ManageFieldCUImplAdapter;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageOwnerCUImplAdapter;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageUserCUImplAdapter;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
+import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Gateway.ManageFieldGatewayImpl;
 
 @Configuration
 public class BeanConfigurations {
@@ -27,6 +29,13 @@ public class BeanConfigurations {
                                                 ManageRolegatewayIntPort gatewayRole,
                                                 ExceptionFormatterIntPort exceptionFormatter){
         return new ManageOwnerCUImplAdapter(gatewayOwner,gatewayUser ,gatewayRole, exceptionFormatter);
+    }
+
+    @Bean
+    public ManageFieldCUImplAdapter createFieldCU(ManageFieldGatewayImpl gatewayField,
+                                                ManageOwnerGatewayIntPort gatewayOwner,
+                                                ExceptionFormatterIntPort exceptionFormatter){
+        return new ManageFieldCUImplAdapter(gatewayField, gatewayOwner, exceptionFormatter);
     }
 
     @Bean

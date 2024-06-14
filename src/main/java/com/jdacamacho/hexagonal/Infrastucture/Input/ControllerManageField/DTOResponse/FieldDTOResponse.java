@@ -2,7 +2,7 @@ package com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTORe
 
 import java.util.ArrayList;
 import java.util.List;
-import com.jdacamacho.hexagonal.Domain.Objects.Owner;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse.OwnerDTOResponse;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ public class FieldDTOResponse {
     private String name;
     private int numberPlayers;
     private boolean state;
-    private Owner objOwner;
+    private OwnerDTOResponse objOwner;
     private List<ScheduleDTOResponse> schedules;
 
     public FieldDTOResponse(){

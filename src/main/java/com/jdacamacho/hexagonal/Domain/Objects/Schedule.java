@@ -8,7 +8,7 @@ import lombok.Data;
 public class Schedule {
     private long id;
     private String bookingTime;
-    private String hour;
+    private int hour;
     private double price;
     private Field objField;
     

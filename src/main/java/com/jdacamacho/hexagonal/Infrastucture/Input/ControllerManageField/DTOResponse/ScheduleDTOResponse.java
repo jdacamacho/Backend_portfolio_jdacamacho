@@ -8,7 +8,7 @@ import lombok.Data;
 public class ScheduleDTOResponse {
     private long id;
     private String bookingTime;
-    private String hour;
+    private int hour;
     private double price;
 
     public ScheduleDTOResponse(){

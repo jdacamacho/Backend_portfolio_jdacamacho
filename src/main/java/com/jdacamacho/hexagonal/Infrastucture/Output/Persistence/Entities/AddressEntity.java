@@ -2,6 +2,7 @@ package com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
@@ -37,7 +38,7 @@ public class AddressEntity {
     @Column(name = "address_country" , nullable = false , length = 50)
     private String country;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_document_number")
     private OwnerEntity objOwner;

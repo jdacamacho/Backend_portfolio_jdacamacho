@@ -77,10 +77,10 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
         if(!this.gatewayOwner.existsById(idOwner)){
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
         }
-
         objOwner = this.gatewayOwner.findById(idOwner);
         field.asignOwner(objOwner);
         field.asignScheduleToField();
+        field.asigFieldToOwner();
         objField = this.gatewayField.save(field);
         return objField;
     }
