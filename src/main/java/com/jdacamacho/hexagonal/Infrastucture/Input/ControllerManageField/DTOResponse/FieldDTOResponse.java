@@ -11,7 +11,6 @@ public class FieldDTOResponse {
     private long id;
     private String name;
     private int numberPlayers;
-    private boolean state;
     private OwnerDTOResponse objOwner;
     private List<ScheduleDTOResponse> schedules;
 

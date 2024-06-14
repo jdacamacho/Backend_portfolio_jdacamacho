@@ -27,6 +27,9 @@ public class ScheduleEntity {
     @Column(name = "schedule_hour", nullable = false)
     private int hour;
 
+    @Column(name = "schedule_state" , nullable = false)
+    private boolean state;
+
     @Column(name = "schedule_price" , nullable = false)
     private double price;
 

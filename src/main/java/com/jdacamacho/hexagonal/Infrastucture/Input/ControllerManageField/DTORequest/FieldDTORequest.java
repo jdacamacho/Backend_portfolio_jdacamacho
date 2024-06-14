@@ -21,9 +21,6 @@ public class FieldDTORequest {
     @PositiveOrZero(message = "Number of players must be a positive number or zero")
     private int numberPlayers;
     
-    @NotNull(message = "State cannot be null")
-    private Boolean state;
-    
     @Valid 
     @Size(min = 1, message = "At least one schedule must be provided")
     private List<ScheduleDTORequest> schedules;

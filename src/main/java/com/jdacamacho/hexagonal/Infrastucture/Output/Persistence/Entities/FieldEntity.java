@@ -33,9 +33,6 @@ public class FieldEntity {
     @Column(name = "field_number_players", nullable = false)
     private int numberPlayers;
 
-    @Column(name = "field_state" , nullable = false)
-    private boolean state;
-
     @ManyToOne
     @JoinColumn(name = "field_owner_id")
     private OwnerEntity objOwner;

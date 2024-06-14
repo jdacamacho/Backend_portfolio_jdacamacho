@@ -16,6 +16,9 @@ public class ScheduleDTORequest {
     
     @NotNull(message = "Hour cannot be null")
     private int hour;
+
+    @NotNull(message = "State cannot be null")
+    private Boolean state;
     
     @PositiveOrZero(message = "Price must be a positive number or zero")
     private double price;

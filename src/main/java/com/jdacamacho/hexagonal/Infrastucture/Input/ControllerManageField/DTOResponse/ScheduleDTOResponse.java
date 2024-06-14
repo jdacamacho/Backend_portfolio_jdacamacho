@@ -9,6 +9,7 @@ public class ScheduleDTOResponse {
     private long id;
     private String bookingTime;
     private int hour;
+    private boolean state;
     private double price;
 
     public ScheduleDTOResponse(){
