@@ -32,8 +32,6 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
 
     @Override
     public User saveUser(User user) {
-        User objUser = null;
-
         if(this.gatewayUser.existsByDocumentNumber(user.getDocumentNumber()) ){
             this.exceptionFormatter.responseEntityExists("User with that document number already exists in the BD...");
         }
@@ -53,57 +51,58 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
             this.exceptionFormatter.responseBusinessRuleViolates("User has duplicate roles");
         }
 
-        objUser = this.gatewayUser.save(user);
+        User objUser = this.gatewayUser.save(user);
+
         return objUser;
     }
 
     @Override
     public User updateUser(long id, User user) {
-        User newUser = null;
-        User oldUser = null;
-
         if(!this.gatewayUser.existsById(id)){
             this.exceptionFormatter.responseEntityNotFound("User with that id was not found in the BD...");
-        }else{
-            oldUser = this.gatewayUser.findById(id);
-
-            if(this.gatewayUser.existsByDocumentNumber(user.getDocumentNumber()) ){
-                if(!oldUser.documentNumberIsEquals(user)){
-                    this.exceptionFormatter.responseEntityExists("User with that document number already exists in the BD...");
-                } 
-            }
-            if(this.gatewayUser.existsByUsername(user.getUsername())){
-                if(!oldUser.usernameIsEquals(user)){
-                    this.exceptionFormatter.responseEntityExists("User with that username number already exists in the BD...");
-                }
-            } 
-            if(!user.isValidDocumentType()){
-                this.exceptionFormatter.responseBusinessRuleViolates("User has a document type not valid");
-            }
-            if(user.userIsOwner()){
-                this.exceptionFormatter.responseBusinessRuleViolates("User cannot be a owner");
-            }
-            if(!user.rolesAreValid(this.gatewayRole.findAll())){
-                this.exceptionFormatter.responseBusinessRuleViolates("User roles are not valid");
-            }
-            if(user.hasDuplicatedRoles()){
-                this.exceptionFormatter.responseBusinessRuleViolates("User has duplicate roles");
-            }
         }
 
+        User oldUser = this.gatewayUser.findById(id);
+
+        if(this.gatewayUser.existsByDocumentNumber(user.getDocumentNumber()) ){
+            if(!oldUser.documentNumberIsEquals(user)){
+                this.exceptionFormatter.responseEntityExists("User with that document number already exists in the BD...");
+            } 
+        }
+        if(this.gatewayUser.existsByUsername(user.getUsername())){
+            if(!oldUser.usernameIsEquals(user)){
+                this.exceptionFormatter.responseEntityExists("User with that username number already exists in the BD...");
+            }
+        } 
+        if(!user.isValidDocumentType()){
+            this.exceptionFormatter.responseBusinessRuleViolates("User has a document type not valid");
+        }
+        if(user.userIsOwner()){
+            this.exceptionFormatter.responseBusinessRuleViolates("User cannot be a owner");
+        }
+        if(!user.rolesAreValid(this.gatewayRole.findAll())){
+            this.exceptionFormatter.responseBusinessRuleViolates("User roles are not valid");
+        }
+        if(user.hasDuplicatedRoles()){
+            this.exceptionFormatter.responseBusinessRuleViolates("User has duplicate roles");
+        }
+        
+
         oldUser.update(user);
-        newUser = this.gatewayUser.save(oldUser);
+
+        User newUser = this.gatewayUser.save(oldUser);
 
         return newUser;
     }
 
     @Override
     public User findUserById(long idUser) {
-        User objUser = null;
         if(!this.gatewayUser.existsById(idUser)){
             this.exceptionFormatter.responseEntityNotFound("User with that id was not found...");
         }
-        objUser = this.gatewayUser.findById(idUser);
+
+        User objUser = this.gatewayUser.findById(idUser);
+        
         return objUser;
     }
     

@@ -127,5 +127,4 @@ public class FieldRestController {
         return ResponseEntity.ok(deleted);
     }
 
-
 }

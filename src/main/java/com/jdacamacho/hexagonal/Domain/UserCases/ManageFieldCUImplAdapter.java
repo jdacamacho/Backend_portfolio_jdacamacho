@@ -27,30 +27,33 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
     @Override
     public List<Field> listFields() {
         List<Field> fields = this.gatewayField.findAll();
+
         if(fields.isEmpty()){
             this.exceptionFormatter.responseNoData("There are no fields in BD...");
         }
+
         return fields;
     }
 
     @Override
     public List<Field> listFieldsByOwnerId(long idOwner) {
-        Owner objOwner = null;
         if(!this.gatewayOwner.existsById(idOwner)){
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
         }
 
-        objOwner = this.gatewayOwner.findById(idOwner);
+        Owner objOwner = this.gatewayOwner.findById(idOwner);
+
         if(objOwner.getFields().isEmpty()){
             this.exceptionFormatter.responseNoData("Owner does not have fields...");
         }
-        return objOwner.getFields();
 
+        return objOwner.getFields();
     }
 
     @Override
     public List<Field> listFieldsByPropertyName(String propertyName) {
         List<Owner> owners = this.gatewayOwner.findOwnerByPropertyName(propertyName);
+
         if(owners.isEmpty()){
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
         }
@@ -67,45 +70,50 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
         }
+
         return this.gatewayField.findById(idField).getSchedules();
     }
 
     @Override
     public Field saveField(long idOwner, Field field) {
-        Owner objOwner = null;
-        Field objField = null;
         if(!this.gatewayOwner.existsById(idOwner)){
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
         }
-        objOwner = this.gatewayOwner.findById(idOwner);
+
+        Owner objOwner = this.gatewayOwner.findById(idOwner);
+        
         field.asignOwner(objOwner);
         field.asignScheduleToField();
         field.asigFieldToOwner();
-        objField = this.gatewayField.save(field);
+
+        Field objField = this.gatewayField.save(field);
+        
         return objField;
     }
 
     @Override
     public Field updateField(long idField, Field field) {
-        Field newField = null;
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
         }
         
         Field oldField = this.gatewayField.findById(idField);
         oldField.update(field);
-        newField = this.gatewayField.save(oldField);
+
+        Field newField = this.gatewayField.save(oldField);
+
         return newField;
     }
 
     @Override
     public boolean deleteField(long idField) {
-        Field objField = null;
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found");
         }
-        objField = this.gatewayField.findById(idField);
+        Field objField = this.gatewayField.findById(idField);
+
         this.gatewayField.delete(objField);
+
         return true;
     }
 
@@ -114,6 +122,7 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
         }
+        
         return this.gatewayField.findById(idField);
     }
 
