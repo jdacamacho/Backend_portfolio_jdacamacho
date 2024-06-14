@@ -43,7 +43,10 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
         if(!user.isValidDocumentType()){
             this.exceptionFormatter.responseBusinessRuleViolates("User has a document type not valid");
         }
-        if(!user.rolesAreValid(this.gatewayRole.findAllExceptAdm())){
+        if(user.userIsOwner()){
+            this.exceptionFormatter.responseBusinessRuleViolates("User cannot be a owner");
+        }
+        if(!user.rolesAreValid(this.gatewayRole.findAll())){
             this.exceptionFormatter.responseBusinessRuleViolates("User roles are not valid");
         }
         if(user.hasDuplicatedRoles()){
@@ -76,6 +79,9 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
             } 
             if(!user.isValidDocumentType()){
                 this.exceptionFormatter.responseBusinessRuleViolates("User has a document type not valid");
+            }
+            if(user.userIsOwner()){
+                this.exceptionFormatter.responseBusinessRuleViolates("User cannot be a owner");
             }
             if(!user.rolesAreValid(this.gatewayRole.findAll())){
                 this.exceptionFormatter.responseBusinessRuleViolates("User roles are not valid");

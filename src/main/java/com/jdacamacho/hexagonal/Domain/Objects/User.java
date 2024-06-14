@@ -35,6 +35,11 @@ public class User {
             .allMatch(objRole -> validRoleSet.contains(objRole));
     }
 
+    public boolean userIsOwner(){
+        return this.getRoles().stream()
+            .anyMatch(role -> role.getName().toLowerCase().equals("owner"));
+    } 
+
     public boolean documentNumberIsEquals(User user){
         return this.getDocumentNumber() == user.getDocumentNumber();
     }
