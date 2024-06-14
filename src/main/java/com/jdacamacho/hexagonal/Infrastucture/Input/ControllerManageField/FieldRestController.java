@@ -49,7 +49,15 @@ public class FieldRestController {
             this.mapper.mapModelToResponse(fields),HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
+    @Transactional(readOnly = true)
+    public ResponseEntity<FieldDTOResponse> getField(@PathVariable long id){
+        Field field = this.fieldCU.findFieldById(id);
+        return new ResponseEntity<FieldDTOResponse>(
+            this.mapper.mapModelToResponse(field),HttpStatus.OK);
+    }
+
+    @GetMapping("/owners/id/{id}")
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexFieldByIDOwner(@PathVariable long id){
         List<Field> fields = this.fieldCU.listFieldsByOwnerId(id);
