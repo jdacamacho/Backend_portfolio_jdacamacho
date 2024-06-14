@@ -6,17 +6,21 @@ import com.jdacamacho.hexagonal.Application.Input.ManageOwnerCUIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageRolegatewayIntPort;
+import com.jdacamacho.hexagonal.Application.Output.ManageUserGatewayIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 
 public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
     private final ManageOwnerGatewayIntPort gatewayOwner;
+    private final ManageUserGatewayIntPort gatewayUser;
     private final ManageRolegatewayIntPort gatewayRole;
     private final ExceptionFormatterIntPort exceptionFormatter;
 
     public ManageOwnerCUImplAdapter(ManageOwnerGatewayIntPort gatewayOwner,
+                                ManageUserGatewayIntPort gatewayUser,
                                 ManageRolegatewayIntPort gatewayRole,
                                 ExceptionFormatterIntPort exceptionFormatter){
         this.gatewayOwner = gatewayOwner;
+        this.gatewayUser = gatewayUser;
         this.gatewayRole = gatewayRole;
         this.exceptionFormatter = exceptionFormatter;
     }
@@ -34,10 +38,10 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
     public Owner saverOwner(Owner owner) {
         Owner objOwner = null;
 
-        if(this.gatewayOwner.existsByDocumentNumber(owner.getDocumentNumber()) ){
+        if(this.gatewayUser.existsByDocumentNumber(owner.getDocumentNumber()) ){
             this.exceptionFormatter.responseEntityExists("Owner with that document number already exists in the BD...");
         }
-        if(this.gatewayOwner.existsByUsername(owner.getUsername())){
+        if(this.gatewayUser.existsByUsername(owner.getUsername())){
             this.exceptionFormatter.responseEntityExists("Owner with that username number already exists in the BD...");
         }
         if(!owner.isValidDocumentType()){
@@ -65,12 +69,12 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
         }else{
             oldOwner = this.gatewayOwner.findById(id);
 
-            if(this.gatewayOwner.existsByDocumentNumber(owner.getDocumentNumber()) ){
+            if(this.gatewayUser.existsByDocumentNumber(owner.getDocumentNumber()) ){
                 if(!oldOwner.documentNumberIsEquals(owner)){
                     this.exceptionFormatter.responseEntityExists("Owner with that document number already exists in the BD...");
                 } 
             }
-            if(this.gatewayOwner.existsByUsername(owner.getUsername())){
+            if(this.gatewayUser.existsByUsername(owner.getUsername())){
                 if(!oldOwner.usernameIsEquals(owner)){
                     this.exceptionFormatter.responseEntityExists("Owner with that username number already exists in the BD...");
                 }

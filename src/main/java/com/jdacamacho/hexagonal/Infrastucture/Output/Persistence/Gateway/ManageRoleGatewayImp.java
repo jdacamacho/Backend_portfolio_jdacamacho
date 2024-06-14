@@ -28,12 +28,5 @@ public class ManageRoleGatewayImp implements ManageRolegatewayIntPort{
         List<Role> response = this.mapper.map(data, new TypeToken<List<Role>>(){}.getType());
         return response;
     }
-
-    @Override
-    public List<Role> findAllExceptAdm() {
-        Iterable<RoleEntity> data = this.serviceBD.findAllExceptAdministrator();
-        List<Role> response = this.mapper.map(data, new TypeToken<List<Role>>(){}.getType());
-        return response;
-    }
     
 }

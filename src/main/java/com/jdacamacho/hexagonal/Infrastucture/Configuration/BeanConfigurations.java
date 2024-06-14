@@ -23,9 +23,10 @@ public class BeanConfigurations {
 
     @Bean
     public ManageOwnerCUImplAdapter createOwnerCU(ManageOwnerGatewayIntPort gatewayOwner,
+                                                ManageUserGatewayIntPort gatewayUser,
                                                 ManageRolegatewayIntPort gatewayRole,
                                                 ExceptionFormatterIntPort exceptionFormatter){
-        return new ManageOwnerCUImplAdapter(gatewayOwner, gatewayRole, exceptionFormatter);
+        return new ManageOwnerCUImplAdapter(gatewayOwner,gatewayUser ,gatewayRole, exceptionFormatter);
     }
 
     @Bean
