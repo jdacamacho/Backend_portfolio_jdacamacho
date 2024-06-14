@@ -18,16 +18,22 @@ public class AddressEntity {
     @Id
     @Column(name = "address_id")
     private long id;
+
     @Column(name = "address_street" , nullable = false , length = 20)
     private String street;
+
     @Column(name = "address_number" , nullable = false , length = 10)
     private String number;
+
     @Column(name = "address_floor/apartment" , nullable = false , length = 10)
     private String floorOrApartment;
+
     @Column(name = "address_neighborhood" , nullable = false , length = 20)
     private String neighborhood;
+
     @Column(name = "address_city" , nullable = false , length = 50)
     private String city;
+    
     @Column(name = "address_country" , nullable = false , length = 50)
     private String country;
 
