@@ -32,8 +32,8 @@ public class ReservationEntity {
     @JoinColumn(name = "reservation_field_id")
     private FieldEntity objField;
 
-    @Column(name = "reservation_hour" , nullable = false, length = 10)
-    private String hour;
+    @Column(name = "reservation_hour" , nullable = false)
+    private int hour;
 
     @Column(name = "reservation_price" , nullable = false)
     private double price;
