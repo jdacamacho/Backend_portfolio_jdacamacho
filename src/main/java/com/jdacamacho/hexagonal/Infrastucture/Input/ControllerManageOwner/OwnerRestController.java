@@ -41,6 +41,7 @@ public class OwnerRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<OwnerDTOResponse>> index(){
         List<Owner> owners = this.ownerCU.listOwners();
+        
         return new ResponseEntity<>(
             this.mapper.mapModelToResponse(owners), HttpStatus.OK);
     }
@@ -49,6 +50,7 @@ public class OwnerRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<OwnerDTOResponse> getOwner(@PathVariable long id){
         Owner owner = this.ownerCU.findOwnerById(id);
+        
         return new ResponseEntity<>(
             this.mapper.mapModelToResponse(owner),HttpStatus.OK);
     }
@@ -56,6 +58,7 @@ public class OwnerRestController {
     @PostMapping("")
     public ResponseEntity<?> saveOwner(@Valid @RequestBody OwnerDTORequest request, BindingResult result){
         Owner owner = this.mapper.mapRequestToModel(request);
+        
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);
         
@@ -76,6 +79,7 @@ public class OwnerRestController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody OwnerDTORequest request, BindingResult result){
         Owner owner = this.mapper.mapRequestToModel(request);
+        
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);
         

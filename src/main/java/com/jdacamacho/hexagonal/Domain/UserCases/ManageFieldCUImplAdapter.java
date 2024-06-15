@@ -37,6 +37,7 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
     @Override
     public List<Field> listFieldsByOwnerId(long idOwner) {
+        
         if(!this.gatewayOwner.existsById(idOwner)){
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
         }
@@ -67,6 +68,7 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
     
     @Override
     public List<Schedule> getSchedulesById(long idField) {
+        
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
         }
@@ -76,8 +78,13 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
     @Override
     public Field saveField(long idOwner, Field field) {
+        
         if(!this.gatewayOwner.existsById(idOwner)){
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
+        }
+
+        if(!field.scheduleAreValid()){
+            this.exceptionFormatter.responseBusinessRuleViolates("Schedule's hour is not valid");
         }
 
         Owner objOwner = this.gatewayOwner.findById(idOwner);
@@ -93,8 +100,13 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
     @Override
     public Field updateField(long idField, Field field) {
+        
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
+        }
+
+        if(!field.scheduleAreValid()){
+            this.exceptionFormatter.responseBusinessRuleViolates("Schedule's hour is not valid");
         }
         
         Field oldField = this.gatewayField.findById(idField);
@@ -107,6 +119,7 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
     @Override
     public boolean deleteField(long idField) {
+        
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found");
         }
@@ -119,11 +132,27 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
 
     @Override
     public Field findFieldById(long idField) {
+        
         if(!this.gatewayField.existById(idField)){
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
         }
         
         return this.gatewayField.findById(idField);
+    }
+
+    @Override
+    public List<Schedule> enableAllSchedules(long idField) {
+        
+        if(!this.gatewayField.existById(idField)){
+            this.exceptionFormatter.responseEntityNotFound("Field was not found");
+        }
+        Field objField = this.gatewayField.findById(idField);
+
+
+        objField.getSchedules().forEach(schedule -> schedule.setState(true));
+        
+
+        return objField.getSchedules();
     }
 
 }

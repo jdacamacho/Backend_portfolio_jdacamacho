@@ -28,14 +28,17 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
     @Override
     public List<Owner> listOwners() {
         List<Owner> owners = this.gatewayOwner.findAll();
+        
         if(owners.isEmpty()){
             this.exceptionFormatter.responseNoData("There are no owners in the BD...");
         }
+
         return owners;
     }
 
     @Override
     public Owner saverOwner(Owner owner) {
+        
         if(this.gatewayUser.existsByDocumentNumber(owner.getDocumentNumber()) ){
             this.exceptionFormatter.responseEntityExists("Owner with that document number already exists in the BD...");
         }
@@ -61,6 +64,7 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
 
     @Override
     public Owner updateOwner(long id, Owner owner) {
+        
         if(!this.gatewayOwner.existsById(id)){
             this.exceptionFormatter.responseEntityNotFound("Owner with that id was not found in the BD...");
         }
@@ -87,7 +91,6 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
             this.exceptionFormatter.responseBusinessRuleViolates("Owner has duplicate roles");
         }
         
-
         oldOwner.update(owner);
 
         Owner newOwner = this.gatewayOwner.save(oldOwner);
@@ -97,6 +100,7 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
 
     @Override
     public Owner findOwnerById(long id) {
+        
         if(!this.gatewayOwner.existsById(id)){
             this.exceptionFormatter.responseEntityNotFound("Owner with that ID was not found");
         }

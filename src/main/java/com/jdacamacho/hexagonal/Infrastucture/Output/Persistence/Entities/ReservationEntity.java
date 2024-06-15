@@ -1,5 +1,7 @@
 package com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities;
 
+import java.util.Date;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +25,10 @@ public class ReservationEntity {
     private long id;
 
     @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "reservation_user_id")
+    private UserEntity objUser;
+
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "reservation_field_id")
     private FieldEntity objField;
 
@@ -31,6 +37,9 @@ public class ReservationEntity {
 
     @Column(name = "reservation_price" , nullable = false)
     private double price;
+
+    @Column(name = "reservation_date", nullable = false)
+    private Date createAt;
 
     public ReservationEntity(){
 

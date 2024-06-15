@@ -14,4 +14,5 @@ public interface ManageFieldCUIntPort {
     public Field updateField(long idField, Field field);
     public boolean deleteField(long idField); 
     public Field findFieldById(long idField);
+    public List<Schedule> enableAllSchedules(long idField);
 }

@@ -41,6 +41,7 @@ public class UserRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<UserDTOResponse>> index(){
         List<User> users = this.userCU.listUsers();
+        
         return new ResponseEntity<>(
             this.mapper.mapModelToResponse(users), HttpStatus.OK);
     }
@@ -49,6 +50,7 @@ public class UserRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<UserDTOResponse> getUser(@PathVariable long id){
         User user = this.userCU.findUserById(id);
+        
         return new ResponseEntity<>(
             this.mapper.mapModelToResponse(user),HttpStatus.OK);
     }
@@ -56,6 +58,7 @@ public class UserRestController {
     @PostMapping("")
     public ResponseEntity<?> saveUser(@Valid @RequestBody UserDTORequest request, BindingResult result){
         User user = this.mapper.mapRequestToModel(request);
+        
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);
         
@@ -76,6 +79,7 @@ public class UserRestController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody UserDTORequest request, BindingResult result){
         User user = this.mapper.mapRequestToModel(request);
+        
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);
         

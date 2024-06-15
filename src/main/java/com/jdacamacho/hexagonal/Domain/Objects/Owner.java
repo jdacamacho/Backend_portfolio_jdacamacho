@@ -19,8 +19,9 @@ public class Owner extends User {
 
     public Owner(long id,long documentNumber, String documentType, String names,
                     String lastNames,String username, String password, List<Role> roles,
-                    long nit, String propertyName, Address address){
-        super(id,documentNumber, documentType, names, lastNames, username, password, roles);
+                    List<Reservation> reservations,long nit, String propertyName, 
+                    Address address){
+        super(id,documentNumber, documentType, names, lastNames, username, password, roles,reservations);
         this.nit = nit;
         this.propertyName = propertyName;
         this.address = address;

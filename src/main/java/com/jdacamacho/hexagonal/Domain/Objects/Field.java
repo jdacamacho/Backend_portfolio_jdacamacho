@@ -20,6 +20,15 @@ public class Field {
         this.reservations = new ArrayList<>();
     }
 
+    public boolean scheduleAreValid(){
+        for(Schedule schedule : this.getSchedules()){
+            if(!schedule.hourIsValid()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void asignOwner(Owner owner){
         this.setObjOwner(owner);
     }

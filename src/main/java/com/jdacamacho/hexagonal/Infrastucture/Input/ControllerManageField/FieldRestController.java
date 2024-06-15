@@ -45,6 +45,7 @@ public class FieldRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexField(){
         List<Field> fields = this.fieldCU.listFields();
+        
         return new ResponseEntity<List<FieldDTOResponse>>(
             this.mapper.mapModelToResponse(fields),HttpStatus.OK);
     }
@@ -53,6 +54,7 @@ public class FieldRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<FieldDTOResponse> getField(@PathVariable long id){
         Field field = this.fieldCU.findFieldById(id);
+        
         return new ResponseEntity<FieldDTOResponse>(
             this.mapper.mapModelToResponse(field),HttpStatus.OK);
     }
@@ -61,6 +63,7 @@ public class FieldRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexFieldByIDOwner(@PathVariable long id){
         List<Field> fields = this.fieldCU.listFieldsByOwnerId(id);
+        
         return new ResponseEntity<List<FieldDTOResponse>>(
             this.mapper.mapModelToResponse(fields),HttpStatus.OK);
     }
@@ -69,6 +72,7 @@ public class FieldRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexFieldByPropertyName(@RequestParam String propertyName ){
         List<Field> fields = this.fieldCU.listFieldsByPropertyName(propertyName);
+        
         return new ResponseEntity<List<FieldDTOResponse>>(
             this.mapper.mapModelToResponse(fields),HttpStatus.OK);
     }
@@ -77,6 +81,16 @@ public class FieldRestController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<ScheduleDTOResponse>> indexSchedulesField(@PathVariable long id ){
         List<Schedule> schedules = this.fieldCU.getSchedulesById(id);
+        
+        return new ResponseEntity<List<ScheduleDTOResponse>>(
+            this.mapper.mapModelsToResponse(schedules),HttpStatus.OK);
+    }
+
+    @GetMapping("/schedules/enable/{id}")
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<ScheduleDTOResponse>> enableFieldsSchedule(@PathVariable long id){
+        List<Schedule> schedules = this.fieldCU.enableAllSchedules(id);
+        
         return new ResponseEntity<List<ScheduleDTOResponse>>(
             this.mapper.mapModelsToResponse(schedules),HttpStatus.OK);
     }
@@ -84,6 +98,7 @@ public class FieldRestController {
     @PostMapping("/{idOwner}")
     public ResponseEntity<?> saveField(@PathVariable long idOwner ,@Valid @RequestBody FieldDTORequest request, BindingResult result){
         Field field = this.mapper.mapRequestToModel(request);
+        
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);
         
@@ -104,6 +119,7 @@ public class FieldRestController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateField(@PathVariable long id ,@Valid @RequestBody FieldDTORequest request, BindingResult result){
         Field field = this.mapper.mapRequestToModel(request);
+        
         Map<String, Object> response = new HashMap<>();
         response = this.errorCatcher.catchErrors(result);
         

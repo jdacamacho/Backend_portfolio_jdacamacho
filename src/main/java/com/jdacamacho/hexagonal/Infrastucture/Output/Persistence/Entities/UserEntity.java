@@ -14,6 +14,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,7 +54,11 @@ public class UserEntity {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<RoleEntity> roles;
 
+    @OneToMany(mappedBy = "objUser")
+    private List<ReservationEntity> reservations;
+
     public UserEntity(){
         this.roles = new ArrayList<>();
+        this.reservations = new ArrayList<>();
     }
 }

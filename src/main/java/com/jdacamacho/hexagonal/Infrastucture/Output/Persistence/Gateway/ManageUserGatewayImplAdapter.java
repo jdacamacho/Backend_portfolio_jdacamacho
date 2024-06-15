@@ -31,6 +31,14 @@ public class ManageUserGatewayImplAdapter implements ManageUserGatewayIntPort{
     }
 
     @Override
+    public List<User> findAllByName(String name) {
+        List<UserEntity> data = this.serviceBD.findAllByNamesContainingIgnoreCase(name);
+        List<User> response = this.mapper.map(data, new TypeToken<List<User>>(){}.getType());
+        return response;
+    }
+
+
+    @Override
     public User save(User user) {
         UserEntity userToSave = this.mapper.map(user, UserEntity.class);
         UserEntity userSaved = this.serviceBD.save(userToSave);

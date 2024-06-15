@@ -37,8 +37,9 @@ public class OwnerEntity extends UserEntity{
 
     public OwnerEntity(long id,long documentNumber, String documentType, String names,
                     String lastNames,String username, String password, List<RoleEntity> roles,
-                    long nit, String propertyName, AddressEntity address){
-        super(id,documentNumber, documentType, names, lastNames, username, password, roles);
+                    List<ReservationEntity> reservations, long nit, String propertyName, 
+                    AddressEntity address){
+        super(id,documentNumber, documentType, names, lastNames, username, password, roles, reservations);
         this.nit = nit;
         this.propertyName = propertyName;
         this.address = address;

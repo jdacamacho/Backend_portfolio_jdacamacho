@@ -1,5 +1,6 @@
 package com.jdacamacho.hexagonal.Domain.Objects;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -19,9 +20,11 @@ public class User {
     private String username;
     private String password;
     private List<Role> roles;
+    private List<Reservation> reservations;
 
     public User(){
-
+        this.roles = new ArrayList<>();
+        this.reservations = new ArrayList<>();
     }
 
     public boolean hasDuplicatedRoles(){

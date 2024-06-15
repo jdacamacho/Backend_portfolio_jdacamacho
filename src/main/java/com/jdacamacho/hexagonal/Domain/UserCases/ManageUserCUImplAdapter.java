@@ -24,14 +24,17 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
     @Override
     public List<User> listUsers() {
         List<User> users = this.gatewayUser.findAll();
+        
         if(users.isEmpty()){
             this.exceptionFormatter.responseNoData("There are no users in BD...");
         }
+        
         return users;
     }
 
     @Override
     public User saveUser(User user) {
+        
         if(this.gatewayUser.existsByDocumentNumber(user.getDocumentNumber()) ){
             this.exceptionFormatter.responseEntityExists("User with that document number already exists in the BD...");
         }
@@ -58,6 +61,7 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
 
     @Override
     public User updateUser(long id, User user) {
+        
         if(!this.gatewayUser.existsById(id)){
             this.exceptionFormatter.responseEntityNotFound("User with that id was not found in the BD...");
         }
@@ -87,7 +91,6 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
             this.exceptionFormatter.responseBusinessRuleViolates("User has duplicate roles");
         }
         
-
         oldUser.update(user);
 
         User newUser = this.gatewayUser.save(oldUser);
@@ -97,6 +100,7 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
 
     @Override
     public User findUserById(long idUser) {
+        
         if(!this.gatewayUser.existsById(idUser)){
             this.exceptionFormatter.responseEntityNotFound("User with that id was not found...");
         }

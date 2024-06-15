@@ -16,4 +16,8 @@ public class Schedule {
     public Schedule(){
         
     }
+
+    public boolean hourIsValid(){
+        return this.hour >= 0 && this.hour <= 12;
+    }
 }
