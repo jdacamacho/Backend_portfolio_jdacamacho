@@ -7,6 +7,7 @@ import com.jdacamacho.hexagonal.Application.Input.ManageReservationCUIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageFieldGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageReservationGatewayIntPort;
+import com.jdacamacho.hexagonal.Application.Output.ManageScheduleGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageUserGatewayIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.Reservation;
 import com.jdacamacho.hexagonal.Domain.Objects.User;
@@ -14,16 +15,16 @@ import com.jdacamacho.hexagonal.Domain.Objects.User;
 public class ManageReservationCUImplAdapter implements ManageReservationCUIntPort {
     private final ManageReservationGatewayIntPort gatewayReservation;
     private final ManageUserGatewayIntPort gatewayUser;
-    private final ManageFieldGatewayIntPort gatewayField;
+    private final ManageScheduleGatewayIntPort gatewaySchedule;
     private final ExceptionFormatterIntPort exceptionFormatter;
     
     public ManageReservationCUImplAdapter(ManageReservationGatewayIntPort gatewayReservation,
                                         ManageUserGatewayIntPort gatewayUser,
-                                        ManageFieldGatewayIntPort gatewayField,
+                                        ManageScheduleGatewayIntPort gatewaySchedule,
                                         ExceptionFormatterIntPort exceptionFormatter){
         this.gatewayReservation = gatewayReservation;
         this.gatewayUser = gatewayUser;
-        this.gatewayField = gatewayField;
+        this.gatewaySchedule = gatewaySchedule;
         this.exceptionFormatter = exceptionFormatter;
     }
 
@@ -66,8 +67,13 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
 
     @Override
     public Reservation makeReservation(long idUser, long idSchedule, Reservation reservation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makeReservation'");
+        
+        if(!this.gatewayUser.existsById(idUser)){
+            this.exceptionFormatter.responseEntityNotFound("User was not found...");
+        }
+
+        return null;
+
     }
 
     @Override

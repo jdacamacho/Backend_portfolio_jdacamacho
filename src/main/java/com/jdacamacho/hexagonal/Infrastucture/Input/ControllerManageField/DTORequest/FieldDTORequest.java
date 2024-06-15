@@ -5,7 +5,6 @@ import java.util.List;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -14,6 +13,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class FieldDTORequest {
+    
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 2, max = 20, message = "Name must be between 2 and 20 characters")
     private String name;

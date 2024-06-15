@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScheduleDTOResponse {
     private long id;
-    private String bookingTime;
+    private String day;
     private int hour;
     private boolean state;
     private double price;

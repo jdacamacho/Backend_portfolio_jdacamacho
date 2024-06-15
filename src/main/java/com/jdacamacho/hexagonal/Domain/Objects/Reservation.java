@@ -1,6 +1,5 @@
 package com.jdacamacho.hexagonal.Domain.Objects;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
