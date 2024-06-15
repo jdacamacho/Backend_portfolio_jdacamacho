@@ -20,9 +20,18 @@ public class Field {
         this.reservations = new ArrayList<>();
     }
 
-    public boolean scheduleAreValid(){
+    public boolean schedulesHourAreValid(){
         for(Schedule schedule : this.getSchedules()){
             if(!schedule.hourIsValid()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean schedulesDayAreValid(){
+        for(Schedule schedule: this.getSchedules()){
+            if(!schedule.isValidDay()){
                 return false;
             }
         }

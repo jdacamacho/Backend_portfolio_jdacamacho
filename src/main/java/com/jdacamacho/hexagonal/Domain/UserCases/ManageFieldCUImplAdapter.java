@@ -83,8 +83,12 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
             this.exceptionFormatter.responseEntityNotFound("Owner was not found...");
         }
 
-        if(!field.scheduleAreValid()){
+        if(!field.schedulesHourAreValid()){
             this.exceptionFormatter.responseBusinessRuleViolates("Schedule's hour is not valid");
+        }
+
+        if(!field.schedulesDayAreValid()){
+            this.exceptionFormatter.responseBusinessRuleViolates("Schedule's day is not valid");
         }
 
         Owner objOwner = this.gatewayOwner.findById(idOwner);
@@ -105,8 +109,12 @@ public class ManageFieldCUImplAdapter implements ManageFieldCUIntPort{
             this.exceptionFormatter.responseEntityNotFound("Field was not found...");
         }
 
-        if(!field.scheduleAreValid()){
+        if(!field.schedulesHourAreValid()){
             this.exceptionFormatter.responseBusinessRuleViolates("Schedule's hour is not valid");
+        }
+
+        if(!field.schedulesDayAreValid()){
+            this.exceptionFormatter.responseBusinessRuleViolates("Schedule's day is not valid");
         }
         
         Field oldField = this.gatewayField.findById(idField);

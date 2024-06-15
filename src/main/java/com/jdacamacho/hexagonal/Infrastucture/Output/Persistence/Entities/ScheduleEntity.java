@@ -21,8 +21,8 @@ public class ScheduleEntity {
     @Column(name = "schedule_id")
     private long id;
 
-    @Column(name = "schedule_booking_time", length = 30, nullable = false)
-    private String bookingTime;
+    @Column(name = "schedule_day" , nullable = false, length = 10)
+    private String day;
 
     @Column(name = "schedule_hour", nullable = false)
     private int hour;
