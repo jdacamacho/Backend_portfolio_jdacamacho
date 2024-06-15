@@ -20,6 +20,14 @@ public class ManageScheduleGatewayImpl implements ManageScheduleGatewayIntPort{
     }
 
     @Override
+    public Schedule save(Schedule schedule) {
+        ScheduleEntity scheduleToSave = this.mapper.map(schedule, ScheduleEntity.class);
+        ScheduleEntity scheduleSaved = this.serviceBD.save(scheduleToSave);
+        Schedule response = this.mapper.map(scheduleSaved, Schedule.class);
+        return response;
+    }
+
+    @Override
     public boolean existsById(long id) {
         return this.serviceBD.existsById(id);
     }
@@ -29,6 +37,5 @@ public class ManageScheduleGatewayImpl implements ManageScheduleGatewayIntPort{
         ScheduleEntity data = this.serviceBD.findById(id).get();
         return this.mapper.map(data, Schedule.class);
     }
-
 
 }

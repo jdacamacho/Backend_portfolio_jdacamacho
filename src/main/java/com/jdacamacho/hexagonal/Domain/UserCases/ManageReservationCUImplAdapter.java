@@ -107,12 +107,12 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
             this.exceptionFormatter.responseBusinessRuleViolates("Schedule does not belong to this field...");
         }
 
-        reservation.disableSchedule(schedule);
+        schedule.disableSchedule();
 
+        this.gatewaySchedule.save(schedule);
         Reservation objReservation = this.gatewayReservation.save(reservation);
 
         return objReservation;
-
     }
 
     @Override
@@ -124,14 +124,15 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
 
         Reservation objReservation = this.gatewayReservation.findById(idReservation);
         
-        if(this.gatewaySchedule.existsById(objReservation.getTicket())){
+        if(!this.gatewaySchedule.existsById(objReservation.getTicket())){
             this.exceptionFormatter.responseEntityNotFound("Ticket was not found...");
         }
 
         Schedule objSchedule = this.gatewaySchedule.findById(objReservation.getTicket());
 
-        objReservation.enableSchedule(objSchedule);
+        objSchedule.enableSchedule();
 
+        this.gatewaySchedule.save(objSchedule);
         this.gatewayReservation.delete(objReservation);
 
         return true;

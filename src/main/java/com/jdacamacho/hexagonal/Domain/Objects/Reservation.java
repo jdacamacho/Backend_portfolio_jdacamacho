@@ -29,25 +29,6 @@ public class Reservation {
         return false;
     }
 
-    public void disableSchedule(Schedule schedule){
-        for(Schedule objSchedule : this.getObjField().getSchedules()){
-            if(objSchedule.getId() == schedule.getId()){
-                objSchedule.disableSchedule();
-                return;
-            }
-        }
-    }
-
-    public void enableSchedule(Schedule schedule){
-        for(Schedule objSchedule : this.getObjField().getSchedules()){
-            if(objSchedule.getId() == schedule.getId()){
-                objSchedule.enableSchedule();
-                return;
-            }
-        }
-    }
-
-
     public void setValues(User user, Field field, Schedule schedule){
         this.setTicket(schedule.getId());
         this.setObjUser(user);
