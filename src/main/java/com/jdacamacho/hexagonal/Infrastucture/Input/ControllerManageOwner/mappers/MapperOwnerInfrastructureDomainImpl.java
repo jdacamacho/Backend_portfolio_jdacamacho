@@ -11,10 +11,10 @@ import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOReq
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse.OwnerDTOResponse;
 
 @Service
-public class MapperOwnerInfrastuctureDomainImpl implements MapperOwnerInfrastuctureDomainInt{
+public class MapperOwnerInfrastructureDomainImpl implements MapperOwnerInfrastructureDomainInt{
     private final ModelMapper mapper;
 
-    public MapperOwnerInfrastuctureDomainImpl(ModelMapper mapper){
+    public MapperOwnerInfrastructureDomainImpl(ModelMapper mapper){
         this.mapper = mapper;
     }
 

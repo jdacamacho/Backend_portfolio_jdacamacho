@@ -6,7 +6,7 @@ import com.jdacamacho.hexagonal.Domain.Objects.User;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTORequest.UserDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTOResponse.UserDTOResponse;
 
-public interface MapperUserInfrastuctureDomainInt {
+public interface MapperUserInfrastructureDomainInt {
     User mapRequestToModel(UserDTORequest request);
     UserDTOResponse mapModelToResponse(User model);
     List<UserDTOResponse> mapModelToResponse(List<User> models);

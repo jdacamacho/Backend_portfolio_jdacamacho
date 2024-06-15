@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdacamacho.hexagonal.Application.Input.ManageReservationCUIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.Reservation;
-import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageReservation.DTOResponse.ReservationDTOResponse;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageReservation.Mappers.MapperReservationInfrastructureDomainInt;
 
@@ -33,7 +32,6 @@ import lombok.RequiredArgsConstructor;
 public class ReservationRestController {
     private final ManageReservationCUIntPort reservationCU;
     private final MapperReservationInfrastructureDomainInt mapper;
-    private final ErrorCatcher errorCatcher;
 
     @GetMapping("")
     @Transactional(readOnly = true)
@@ -64,14 +62,9 @@ public class ReservationRestController {
 
     @PostMapping("/users/{idUser}/fields/{idField}/schedules/{idSchedule}")
     public ResponseEntity<?> makeReservation(@PathVariable long idUser,@PathVariable long idField ,
-                                            @PathVariable long idSchedule, BindingResult result){
+                                            @PathVariable long idSchedule){
 
         Map<String, Object> response = new HashMap<>();
-        response = this.errorCatcher.catchErrors(result);
-
-        if(response.size() != 0){
-            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
-        }
 
         try{
             ReservationDTOResponse objReservation = this.mapper.mapModelToResponse(this.reservationCU.makeReservation(idUser, idField, idSchedule));

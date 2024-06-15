@@ -21,6 +21,9 @@ public class ScheduleEntity {
     @Column(name = "schedule_id")
     private long id;
 
+    @Column(name = "schedule_booking_time", nullable = false, length = 10)
+    private String bookingTime;
+
     @Column(name = "schedule_day" , nullable = false, length = 10)
     private String day;
 

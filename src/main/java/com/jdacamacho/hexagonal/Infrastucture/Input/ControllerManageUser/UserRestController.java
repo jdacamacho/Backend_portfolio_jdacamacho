@@ -23,7 +23,7 @@ import com.jdacamacho.hexagonal.Domain.Objects.User;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTORequest.UserDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTOResponse.UserDTOResponse;
-import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.mappers.MapperUserInfrastuctureDomainInt;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.mappers.MapperUserInfrastructureDomainInt;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +34,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserRestController {
     private final ManageUserCUIntPort userCU;
-    private final MapperUserInfrastuctureDomainInt mapper;
+    private final MapperUserInfrastructureDomainInt mapper;
     private final ErrorCatcher errorCatcher;
 
     @GetMapping("")

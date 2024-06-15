@@ -27,7 +27,7 @@ import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTORequest.FieldDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTOResponse.FieldDTOResponse;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTOResponse.ScheduleDTOResponse;
-import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.mappers.MapperFieldInfrastuctureDomainInt;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.mappers.MapperFieldInfrastructureDomainInt;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FieldRestController {
     private final ManageFieldCUIntPort fieldCU;
-    private final MapperFieldInfrastuctureDomainInt mapper;
+    private final MapperFieldInfrastructureDomainInt mapper;
     private final ErrorCatcher errorCatcher;
 
     @GetMapping("")

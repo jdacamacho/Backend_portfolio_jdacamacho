@@ -12,11 +12,11 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.RoleEn
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.RoleRepository;
 
 @Service
-public class ManageRoleGatewayImp implements ManageRolegatewayIntPort{
+public class ManageRoleGatewayImpl implements ManageRolegatewayIntPort{
     private final RoleRepository serviceBD;
     private final ModelMapper mapper;
 
-    public ManageRoleGatewayImp(RoleRepository serviceBD,
+    public ManageRoleGatewayImpl(RoleRepository serviceBD,
                             ModelMapper mapper){
         this.serviceBD = serviceBD;
         this.mapper = mapper;

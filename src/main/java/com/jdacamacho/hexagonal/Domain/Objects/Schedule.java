@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Schedule {
     private long id;
+    private String bookingTime;
     private String day;
     private int hour;
     private boolean state;
@@ -17,6 +18,14 @@ public class Schedule {
     
     public Schedule(){
         
+    }
+
+    public void enableSchedule(){
+        this.setState(true);
+    }
+
+    public void disableSchedule(){
+        this.setState(false);
     }
 
     public boolean hourIsValid(){

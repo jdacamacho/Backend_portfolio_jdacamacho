@@ -8,7 +8,7 @@ import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTOReq
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTOResponse.FieldDTOResponse;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTOResponse.ScheduleDTOResponse;
 
-public interface MapperFieldInfrastuctureDomainInt {
+public interface MapperFieldInfrastructureDomainInt {
     Field mapRequestToModel(FieldDTORequest request);
     FieldDTOResponse mapModelToResponse(Field model);
     List<FieldDTOResponse> mapModelToResponse(List<Field> models);

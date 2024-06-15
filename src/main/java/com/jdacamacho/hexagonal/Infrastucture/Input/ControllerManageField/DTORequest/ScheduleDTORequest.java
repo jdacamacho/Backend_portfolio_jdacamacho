@@ -10,8 +10,13 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ScheduleDTORequest {
-   @NotBlank(message = "Booking time cannot be blank")
-   @Size(min = 2, max = 30, message = "Booking time must be between 2 and 30 characters")
+
+    @NotBlank(message = "Booking time cannot be blank")
+    @Size(min = 2, max = 30, message = "Booking time must be between 2 and 30 characters")
+    private String bookingTime;
+
+    @NotBlank(message = "Day cannot be blank")
+    @Size(min = 2, max = 30, message = "Day must be between 2 and 30 characters")
     private String day;
     
     @NotNull(message = "Hour cannot be null")

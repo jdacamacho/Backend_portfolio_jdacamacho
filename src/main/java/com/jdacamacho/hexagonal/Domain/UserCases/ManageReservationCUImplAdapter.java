@@ -67,6 +67,10 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
 
         User objUser = this.gatewayUser.findById(idUser);
 
+        if(objUser.getReservations().isEmpty()){
+            this.exceptionFormatter.responseEntityNotFound("User has no reservations...");
+        }
+
         return objUser.getReservations();
     }
 
@@ -90,6 +94,11 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
         Field field = this.gatewayField.findById(idField);
         Schedule schedule = this.gatewaySchedule.findById(idSchedule);
 
+
+        if(!schedule.isState()){
+            this.exceptionFormatter.responseBusinessRuleViolates("This schedule is busy...");
+        }
+
         reservation.setValues(user, field, schedule);
         reservation.setUserReservation();
         reservation.setFieldReservation();
@@ -97,6 +106,8 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
         if(!reservation.scheduleBelongToField(schedule)){
             this.exceptionFormatter.responseBusinessRuleViolates("Schedule does not belong to this field...");
         }
+
+        reservation.disableSchedule(schedule);
 
         Reservation objReservation = this.gatewayReservation.save(reservation);
 
@@ -112,6 +123,14 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
         }
 
         Reservation objReservation = this.gatewayReservation.findById(idReservation);
+        
+        if(this.gatewaySchedule.existsById(objReservation.getTicket())){
+            this.exceptionFormatter.responseEntityNotFound("Ticket was not found...");
+        }
+
+        Schedule objSchedule = this.gatewaySchedule.findById(objReservation.getTicket());
+
+        objReservation.enableSchedule(objSchedule);
 
         this.gatewayReservation.delete(objReservation);
 

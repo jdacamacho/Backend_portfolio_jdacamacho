@@ -23,7 +23,7 @@ import com.jdacamacho.hexagonal.Domain.Objects.Owner;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTORequest.OwnerDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.DTOResponse.OwnerDTOResponse;
-import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.mappers.MapperOwnerInfrastuctureDomainInt;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageOwner.mappers.MapperOwnerInfrastructureDomainInt;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +34,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OwnerRestController {
     private final ManageOwnerCUIntPort ownerCU;
-    private final MapperOwnerInfrastuctureDomainInt mapper;
+    private final MapperOwnerInfrastructureDomainInt mapper;
     private final ErrorCatcher errorCatcher;
 
     @GetMapping("")

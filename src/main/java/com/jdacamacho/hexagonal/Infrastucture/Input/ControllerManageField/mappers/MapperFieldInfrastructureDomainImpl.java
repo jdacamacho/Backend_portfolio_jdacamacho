@@ -13,10 +13,10 @@ import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTORes
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageField.DTOResponse.ScheduleDTOResponse;
 
 @Service
-public class MapperFieldInfrastuctureDomainImpl implements MapperFieldInfrastuctureDomainInt{
+public class MapperFieldInfrastructureDomainImpl implements MapperFieldInfrastructureDomainInt{
     private final ModelMapper mapper;
 
-    public MapperFieldInfrastuctureDomainImpl(ModelMapper mapper){
+    public MapperFieldInfrastructureDomainImpl(ModelMapper mapper){
         this.mapper = mapper;
     }
 
