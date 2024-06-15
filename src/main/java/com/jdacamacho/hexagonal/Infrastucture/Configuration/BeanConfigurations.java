@@ -5,10 +5,13 @@ import org.springframework.context.annotation.Configuration;
 
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
+import com.jdacamacho.hexagonal.Application.Output.ManageReservationGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageRolegatewayIntPort;
+import com.jdacamacho.hexagonal.Application.Output.ManageScheduleGatewayIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageUserGatewayIntPort;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageFieldCUImplAdapter;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageOwnerCUImplAdapter;
+import com.jdacamacho.hexagonal.Domain.UserCases.ManageReservationCUImplAdapter;
 import com.jdacamacho.hexagonal.Domain.UserCases.ManageUserCUImplAdapter;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Gateway.ManageFieldGatewayImpl;
@@ -36,6 +39,15 @@ public class BeanConfigurations {
                                                 ManageOwnerGatewayIntPort gatewayOwner,
                                                 ExceptionFormatterIntPort exceptionFormatter){
         return new ManageFieldCUImplAdapter(gatewayField, gatewayOwner, exceptionFormatter);
+    }
+
+    @Bean
+    public ManageReservationCUImplAdapter createReservationCU(ManageReservationGatewayIntPort gatewayReservation,
+                                                            ManageUserGatewayIntPort gatewayUser,
+                                                            ManageFieldGatewayImpl gatewayField,
+                                                            ManageScheduleGatewayIntPort gatewaySchedule,
+                                                            ExceptionFormatterIntPort exceptionFormatter){
+        return new ManageReservationCUImplAdapter(gatewayReservation, gatewayUser, gatewaySchedule, gatewayField, exceptionFormatter);
     }
 
     @Bean

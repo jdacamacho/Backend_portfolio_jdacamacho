@@ -71,7 +71,7 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
     }
 
     @Override
-    public Reservation makeReservation(long idUser, long idField, long idSchedule, Reservation reservation) {
+    public Reservation makeReservation(long idUser, long idField, long idSchedule) {
         
         if(!this.gatewayUser.existsById(idUser)){
             this.exceptionFormatter.responseEntityNotFound("User was not found...");
@@ -85,6 +85,7 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
             this.exceptionFormatter.responseEntityNotFound("Schedule was not found...");
         }
 
+        Reservation reservation = new Reservation();
         User user = this.gatewayUser.findById(idUser);
         Field field = this.gatewayField.findById(idField);
         Schedule schedule = this.gatewaySchedule.findById(idSchedule);

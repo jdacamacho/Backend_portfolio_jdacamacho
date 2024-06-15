@@ -16,7 +16,7 @@ public class Reservation {
     private Date createAt;
 
     public Reservation(){
-        
+   
     }
 
     public boolean scheduleBelongToField(Schedule schedule){
