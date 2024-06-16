@@ -10,6 +10,7 @@ import lombok.Data;
 public class Reservation {
     private long id;
     private long ticket;
+    private boolean pay;
     private User objUser;
     private Field objField;
     private int hour;
@@ -31,6 +32,7 @@ public class Reservation {
 
     public void setValues(User user, Field field, Schedule schedule){
         this.setTicket(schedule.getId());
+        this.setPay(false);
         this.setObjUser(user);
         this.setObjField(field);
         this.setHour(schedule.getHour());
@@ -44,6 +46,18 @@ public class Reservation {
 
     public void setFieldReservation(){
         this.getObjField().getReservations().add(this);
+    }
+
+    public void confirmPay(){
+        this.setPay(true);
+    }
+
+    public void updateStateSchedule(Schedule schedule){
+        for(Schedule objSchedule : this.getObjField().getSchedules()){
+            if(objSchedule.getId() == schedule.getId()){
+                objSchedule.setState(schedule.isState());
+            }
+        }
     }
 
 }

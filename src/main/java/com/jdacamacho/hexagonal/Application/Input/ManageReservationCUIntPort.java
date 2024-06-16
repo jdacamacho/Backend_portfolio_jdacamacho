@@ -10,6 +10,7 @@ public interface ManageReservationCUIntPort {
     public List<Reservation> listReservationByUserId(long idUser);
     public Reservation makeReservation(long idUser, long idField, long idSchedule);
     public boolean cancelReservation(long idReservation);
+    public Reservation confirmPayReservation(long idReservation);
     public Reservation findReservationById(long idReservation);
 
 }

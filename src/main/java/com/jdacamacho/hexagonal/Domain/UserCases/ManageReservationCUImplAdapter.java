@@ -108,6 +108,7 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
         }
 
         schedule.disableSchedule();
+        reservation.updateStateSchedule(schedule);
 
         this.gatewaySchedule.save(schedule);
         Reservation objReservation = this.gatewayReservation.save(reservation);
@@ -131,11 +132,37 @@ public class ManageReservationCUImplAdapter implements ManageReservationCUIntPor
         Schedule objSchedule = this.gatewaySchedule.findById(objReservation.getTicket());
 
         objSchedule.enableSchedule();
+        objReservation.updateStateSchedule(objSchedule);
 
         this.gatewaySchedule.save(objSchedule);
         this.gatewayReservation.delete(objReservation);
 
         return true;
+    }
+
+    @Override
+    public Reservation confirmPayReservation(long idReservation) {
+        
+        if(!this.gatewayReservation.existsById(idReservation)){
+            this.exceptionFormatter.responseEntityNotFound("Reservation was not found...");
+        }
+
+        Reservation reservation = this.gatewayReservation.findById(idReservation);
+
+        if(!this.gatewaySchedule.existsById(reservation.getTicket())){
+            this.exceptionFormatter.responseEntityNotFound("Ticket was not found...");
+        }
+
+        Schedule schedule = this.gatewaySchedule.findById(reservation.getTicket());
+
+        schedule.enableSchedule();
+        reservation.updateStateSchedule(schedule);
+        reservation.confirmPay();
+
+        this.gatewaySchedule.save(schedule);
+        Reservation objReservation = this.gatewayReservation.save(reservation);
+        
+        return objReservation;
     }
 
     @Override

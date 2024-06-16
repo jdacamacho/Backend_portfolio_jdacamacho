@@ -27,6 +27,9 @@ public class ReservationEntity {
     @Column(name = "reservation_ticket", nullable = false)
     private long ticket;
 
+    @Column(name = "reservation_was_pay", nullable = false)
+    private boolean pay;
+
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "reservation_user_id")
     private UserEntity objUser;

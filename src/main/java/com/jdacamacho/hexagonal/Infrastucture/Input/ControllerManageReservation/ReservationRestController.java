@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,6 +69,20 @@ public class ReservationRestController {
         try{
             ReservationDTOResponse objReservation = this.mapper.mapModelToResponse(this.reservationCU.makeReservation(idUser, idField, idSchedule));
             return new ResponseEntity<ReservationDTOResponse>(objReservation, HttpStatus.CREATED);
+        }catch(DataAccessException e){
+            response.put("message", "Error when inserting into database");
+            response.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> confirmPay(@PathVariable long id){
+        Map<String, Object> response = new HashMap<>();
+
+        try{
+            ReservationDTOResponse objReservation = this.mapper.mapModelToResponse(this.reservationCU.confirmPayReservation(id));
+            return new ResponseEntity<ReservationDTOResponse>(objReservation, HttpStatus.OK);
         }catch(DataAccessException e){
             response.put("message", "Error when inserting into database");
             response.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());

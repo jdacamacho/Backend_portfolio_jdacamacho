@@ -12,6 +12,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ReservationDTOResponse {
     private long id;
+    private boolean pay;
     private UserDTOResponse objUser;
     private FieldDTOResponse objField;
     private int hour;
