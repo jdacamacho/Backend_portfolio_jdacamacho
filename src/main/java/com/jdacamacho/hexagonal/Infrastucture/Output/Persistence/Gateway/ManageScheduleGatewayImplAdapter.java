@@ -9,11 +9,11 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.Schedu
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.ScheduleRepository;
 
 @Service
-public class ManageScheduleGatewayImpl implements ManageScheduleGatewayIntPort{
+public class ManageScheduleGatewayImplAdapter implements ManageScheduleGatewayIntPort{
     private final ScheduleRepository serviceBD;
     private final ModelMapper mapper;
 
-    public ManageScheduleGatewayImpl(ScheduleRepository serviceBD,
+    public ManageScheduleGatewayImplAdapter(ScheduleRepository serviceBD,
                                     ModelMapper mapper){
         this.serviceBD = serviceBD;
         this.mapper = mapper;

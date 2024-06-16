@@ -2,6 +2,8 @@ package com.jdacamacho.hexagonal.Domain.UserCases;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.jdacamacho.hexagonal.Application.Input.ManageOwnerCUIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageOwnerGatewayIntPort;
@@ -13,15 +15,18 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
     private final ManageOwnerGatewayIntPort gatewayOwner;
     private final ManageUserGatewayIntPort gatewayUser;
     private final ManageRolegatewayIntPort gatewayRole;
+    private final PasswordEncoder passwordEncoder;
     private final ExceptionFormatterIntPort exceptionFormatter;
 
     public ManageOwnerCUImplAdapter(ManageOwnerGatewayIntPort gatewayOwner,
                                 ManageUserGatewayIntPort gatewayUser,
                                 ManageRolegatewayIntPort gatewayRole,
+                                PasswordEncoder passwordEncoder,
                                 ExceptionFormatterIntPort exceptionFormatter){
         this.gatewayOwner = gatewayOwner;
         this.gatewayUser = gatewayUser;
         this.gatewayRole = gatewayRole;
+        this.passwordEncoder = passwordEncoder;
         this.exceptionFormatter = exceptionFormatter;
     }
 
@@ -56,7 +61,7 @@ public class ManageOwnerCUImplAdapter implements ManageOwnerCUIntPort {
         }
 
         owner.assignAddress();
-        
+        owner.setPasswordEncode(this.passwordEncoder.encode(owner.getPassword()));
         Owner objOwner = this.gatewayOwner.save(owner);
         
         return objOwner;

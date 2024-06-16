@@ -5,17 +5,17 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.ExceptionS
 import lombok.Getter;
 
 @Getter
-public class BadCredentials extends RuntimeException{
+public class BadCredentialsException extends RuntimeException{
     private final String messageKey;
     private final String code;
 
-    public BadCredentials(ErrorCode code){
+    public BadCredentialsException(ErrorCode code){
         super(code.getCode());
         this.messageKey = code.getMessageKey();
         this.code = code.getCode();
     }
 
-    public BadCredentials(final String message){
+    public BadCredentialsException(final String message){
         super(message);
         this.messageKey = ErrorCode.BAD_CREDENTIALS.getMessageKey();
         this.code = ErrorCode.BAD_CREDENTIALS.getCode();

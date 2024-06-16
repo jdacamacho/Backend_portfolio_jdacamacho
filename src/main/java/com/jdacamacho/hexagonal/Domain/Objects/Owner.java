@@ -38,7 +38,6 @@ public class Owner extends User {
         this.setNames(owner.getNames());
         this.setLastNames(owner.getLastNames());
         this.setUsername(owner.getUsername());
-        this.setPassword(owner.getPassword());
         this.setNit(owner.getNit());
         this.setPropertyName(owner.getPropertyName());
         this.getAddress().setStreet(owner.getAddress().getStreet());

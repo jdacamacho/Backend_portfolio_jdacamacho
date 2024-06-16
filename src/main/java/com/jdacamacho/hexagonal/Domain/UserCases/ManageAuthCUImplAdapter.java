@@ -2,6 +2,8 @@ package com.jdacamacho.hexagonal.Domain.UserCases;
 
 import java.util.Date;
 
+import org.springframework.security.authentication.BadCredentialsException;
+
 import com.jdacamacho.hexagonal.Application.Input.ManageAuthCUIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageAuthenticatorGatewayIntPort;
@@ -23,14 +25,16 @@ public class ManageAuthCUImplAdapter implements ManageAuthCUIntPort{
     @Override
     public UserAuth login(Credential credential) {
         
-        if(!this.gatewayAuthenticator.authenticationIsValid(credential.getUsername(), credential.getPassword())){
-            this.exceptionFormatter.responseBadCredentials("Checkout your credentials...");
+        if(!this.gatewayAuthenticator.existsByUsername(credential.getUsername())){
+            this.exceptionFormatter.responseBadCredentials("Username was not found...");
         }
 
-        String token = this.gatewayAuthenticator.authenticateUser(credential.getUsername(), credential.getPassword());
+        String token = "";
 
-        if(token.isBlank()){
-            this.exceptionFormatter.responseBadCredentials("Has occurred an error, try again please...");
+        try{
+            token = this.gatewayAuthenticator.authenticateUser(credential.getUsername(), credential.getPassword());
+        }catch(BadCredentialsException e){
+            this.exceptionFormatter.responseBadCredentials("Checkout your username or password, try again please...");
         }
 
         User user = this.gatewayAuthenticator.findByUsername(credential.getUsername());

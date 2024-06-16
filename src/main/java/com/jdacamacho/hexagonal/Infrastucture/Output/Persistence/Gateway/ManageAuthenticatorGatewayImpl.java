@@ -33,8 +33,8 @@ public class ManageAuthenticatorGatewayImpl implements ManageAuthenticatorGatewa
     }
 
     @Override
-    public boolean authenticationIsValid(String username, String password) {
-        return this.serviceDB.existsByUsernameAndPassword(username, password);
+    public boolean existsByUsername(String username) {
+        return this.serviceDB.existsByUsername(username);
     }
 
     @Override
@@ -60,6 +60,5 @@ public class ManageAuthenticatorGatewayImpl implements ManageAuthenticatorGatewa
         UserEntity data = this.serviceDB.findByUsername(username).get();
         return this.mapper.map(data, User.class);
     }
-
 
 }

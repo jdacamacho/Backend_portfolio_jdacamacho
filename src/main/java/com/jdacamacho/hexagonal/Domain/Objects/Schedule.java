@@ -33,7 +33,7 @@ public class Schedule {
     }
 
     public boolean isValidDay(){
-        String[] validDays = {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
+        String[] validDays = {"lunes","martes","miercoles","jueves","viernes","sabado","domingo"};
         String lowerCaseType = this.getDay().toLowerCase();
         return Arrays.stream(validDays)
                                 .anyMatch(validDay -> validDay.equals(lowerCaseType));

@@ -1,9 +1,9 @@
 package com.jdacamacho.hexagonal.Infrastucture.Output.Formatter;
 
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
+import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.BadCredentialsException;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.BusinessRuleException;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.EntityExistsException;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.EntityNotFoundException;

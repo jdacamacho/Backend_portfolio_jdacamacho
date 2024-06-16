@@ -14,5 +14,4 @@ public interface UserRepository extends JpaRepository<UserEntity,Long>{
     public boolean existsByDocumentNumber(long documentNumber);
     public boolean existsByUsername(String username);
     public Optional<UserEntity> findByUsername(String username);
-    public boolean existsByUsernameAndPassword(String username, String password);
 }

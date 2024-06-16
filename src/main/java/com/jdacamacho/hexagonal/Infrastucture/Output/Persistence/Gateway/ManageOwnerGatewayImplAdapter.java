@@ -12,11 +12,11 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.OwnerE
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.OwnerRepository;
 
 @Service
-public class ManageOwnerGatewayImpl implements ManageOwnerGatewayIntPort{
+public class ManageOwnerGatewayImplAdapter implements ManageOwnerGatewayIntPort{
     private final OwnerRepository serviceBD;
     private final ModelMapper mapper;
 
-    public ManageOwnerGatewayImpl(OwnerRepository serviceBD, 
+    public ManageOwnerGatewayImplAdapter(OwnerRepository serviceBD, 
                                 ModelMapper mapper){
         this.serviceBD = serviceBD;
         this.mapper = mapper;

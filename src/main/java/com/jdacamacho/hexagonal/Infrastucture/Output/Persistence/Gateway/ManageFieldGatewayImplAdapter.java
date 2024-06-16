@@ -12,11 +12,11 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.FieldE
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.FieldRepository;
 
 @Service
-public class ManageFieldGatewayImpl implements ManageFieldGatewayIntPort{
+public class ManageFieldGatewayImplAdapter implements ManageFieldGatewayIntPort{
     private final FieldRepository serviceBD;
     private final ModelMapper mapper;
 
-    public ManageFieldGatewayImpl(FieldRepository serviceBD,
+    public ManageFieldGatewayImplAdapter(FieldRepository serviceBD,
                                 ModelMapper mapper){
         this.serviceBD = serviceBD;
         this.mapper = mapper;

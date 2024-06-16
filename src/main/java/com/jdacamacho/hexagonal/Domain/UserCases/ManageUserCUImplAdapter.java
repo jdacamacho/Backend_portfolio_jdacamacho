@@ -2,6 +2,8 @@ package com.jdacamacho.hexagonal.Domain.UserCases;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.jdacamacho.hexagonal.Application.Input.ManageUserCUIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
 import com.jdacamacho.hexagonal.Application.Output.ManageRolegatewayIntPort;
@@ -11,13 +13,16 @@ import com.jdacamacho.hexagonal.Domain.Objects.User;
 public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
     private final ManageUserGatewayIntPort gatewayUser;
     private final ManageRolegatewayIntPort gatewayRole;
+    private final PasswordEncoder passwordEncoder;
     private final ExceptionFormatterIntPort exceptionFormatter;
 
     public ManageUserCUImplAdapter(ManageUserGatewayIntPort gatewayUser,
                                 ManageRolegatewayIntPort gatewayRole,
+                                PasswordEncoder passwordEncoder,
                                 ExceptionFormatterIntPort exceptionFormatter){
         this.gatewayUser = gatewayUser;
         this.gatewayRole = gatewayRole;
+        this.passwordEncoder = passwordEncoder;
         this.exceptionFormatter = exceptionFormatter;
     }
 
@@ -54,6 +59,7 @@ public class ManageUserCUImplAdapter implements ManageUserCUIntPort{
             this.exceptionFormatter.responseBusinessRuleViolates("User has duplicate roles");
         }
 
+        user.setPasswordEncode(this.passwordEncoder.encode(user.getPassword()));
         User objUser = this.gatewayUser.save(user);
 
         return objUser;

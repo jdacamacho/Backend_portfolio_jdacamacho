@@ -50,7 +50,7 @@ public class UserEntity implements UserDetails{
     @Column(name = "user_user_name", nullable = false , unique = true , length = 20)
     private String username;
     
-    @Column(name = "user_password", nullable = false , length = 100)
+    @Column(name = "user_password", nullable = false , length = 400)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -9,10 +9,10 @@ import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageLogin.DTOReq
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageLogin.DTOResponse.UserAuthDTOResponse;
 
 @Service
-public class MapperLoginInfrastructureDomainImpl implements MapperLoginInfrastructureDomainInt {
+public class MapperAuthInfrastructureDomainImpl implements MapperAuthInfrastructureDomainInt {
     private final ModelMapper mapper;
 
-    public MapperLoginInfrastructureDomainImpl(ModelMapper mapper){
+    public MapperAuthInfrastructureDomainImpl(ModelMapper mapper){
         this.mapper = mapper;
     }
 

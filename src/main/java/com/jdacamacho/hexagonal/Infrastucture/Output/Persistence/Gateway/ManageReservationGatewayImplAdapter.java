@@ -12,11 +12,11 @@ import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities.Reserv
 import com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Repositories.ReservationRepository;
 
 @Service
-public class ManageReservationGatewayImpl implements ManageReservationGatewayIntPort {
+public class ManageReservationGatewayImplAdapter implements ManageReservationGatewayIntPort {
     private final ReservationRepository serviceBD;
     private final ModelMapper mapper;
 
-    public ManageReservationGatewayImpl(ReservationRepository serviceBD,
+    public ManageReservationGatewayImplAdapter(ReservationRepository serviceBD,
                                         ModelMapper mapper){
         this.serviceBD = serviceBD;
         this.mapper = mapper;

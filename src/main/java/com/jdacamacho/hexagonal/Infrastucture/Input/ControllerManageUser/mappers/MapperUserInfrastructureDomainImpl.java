@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Domain.Objects.User;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTORequest.UserDTORequest;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTORequest.UserUpdateDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTOResponse.UserDTOResponse;
 
 @Service
@@ -22,6 +23,13 @@ public class MapperUserInfrastructureDomainImpl implements MapperUserInfrastruct
     public User mapRequestToModel(UserDTORequest request) {
         return this.mapper.map(request, User.class);
     }
+
+    
+    @Override
+    public User mapRequestToModel(UserUpdateDTORequest request) {
+        return this.mapper.map(request, User.class);
+    }
+
 
     @Override
     public UserDTOResponse mapModelToResponse(User model) {

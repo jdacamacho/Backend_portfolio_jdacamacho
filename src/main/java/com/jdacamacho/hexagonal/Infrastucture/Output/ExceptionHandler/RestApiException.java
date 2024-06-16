@@ -16,7 +16,7 @@ import  com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.Exception
 
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.ExceptionStructure.ErrorCode;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.ExceptionStructure.ErrorUtils;
-import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.BadCredentials;
+import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.BadCredentialsException;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.BusinessRuleException;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.EntityExistsException;
 import com.jdacamacho.hexagonal.Infrastucture.Output.ExceptionHandler.OwnException.EntityNotFoundException;
@@ -39,15 +39,16 @@ public class RestApiException {
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(BadCredentials.class)
+    @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Error> handleBadCredentialsException(final HttpServletRequest req,
-                    final BadCredentials ex, final Locale locale) {
+                    final BadCredentialsException ex, final Locale locale) {
         final Error error = ErrorUtils
                         .createError(ErrorCode.BAD_CREDENTIALS.getCode(),
-                                        ErrorCode.BAD_CREDENTIALS.getMessageKey(),
-                                        HttpStatus.INTERNAL_SERVER_ERROR.value())
+                                        String.format("%s, %s", ErrorCode.BAD_CREDENTIALS.getMessageKey(),
+                                        ex.getMessage()),
+                                        HttpStatus.NOT_ACCEPTABLE.value())
                                         .setUrl(req.getRequestURL().toString()).setMethod(req.getMethod());
-        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler(EntityExistsException.class)

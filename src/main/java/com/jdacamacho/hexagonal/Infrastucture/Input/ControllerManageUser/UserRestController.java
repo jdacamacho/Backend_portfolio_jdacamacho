@@ -22,6 +22,7 @@ import com.jdacamacho.hexagonal.Application.Input.ManageUserCUIntPort;
 import com.jdacamacho.hexagonal.Domain.Objects.User;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ErrorCatcher;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTORequest.UserDTORequest;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTORequest.UserUpdateDTORequest;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTOResponse.UserDTOResponse;
 import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.mappers.MapperUserInfrastructureDomainInt;
 
@@ -77,7 +78,7 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody UserDTORequest request, BindingResult result){
+    public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody UserUpdateDTORequest request, BindingResult result){
         User user = this.mapper.mapRequestToModel(request);
         
         Map<String, Object> response = new HashMap<>();

@@ -58,13 +58,16 @@ public class User {
                      .anyMatch(validType -> validType.equals(lowerCaseType)); 
     }
 
+    public void setPasswordEncode(String passwordEncode){
+        this.setPassword(passwordEncode);
+    }
+
     public void update(User user){
         this.setDocumentNumber(user.getDocumentNumber());
         this.setDocumentType(user.getDocumentType());
         this.setNames(user.getNames());
         this.setLastNames(user.getLastNames());
         this.setUsername(user.getUsername());
-        this.setPassword(user.getPassword());
         this.setRoles(user.getRoles());
     }
 

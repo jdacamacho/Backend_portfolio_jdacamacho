@@ -2,7 +2,7 @@ package com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageLogin.DTORe
 
 import java.util.Date;
 
-import com.jdacamacho.hexagonal.Domain.Objects.User;
+import com.jdacamacho.hexagonal.Infrastucture.Input.ControllerManageUser.DTOResponse.UserDTOResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,11 +10,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UserAuthDTOResponse {
-    private User objUser;
+    private UserDTOResponse objUser;
     private String token;
     private Date authenticatedAt;
 
     public UserAuthDTOResponse(){
-        
+
     }
 }
