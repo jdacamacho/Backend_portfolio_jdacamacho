@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,7 @@ public class AuthRestController {
     private final ErrorCatcher errorCatcher;
 
     @PostMapping("")
+    @Transactional
     public ResponseEntity<?> login(@Valid @RequestBody CredentialDTORequest request, BindingResult result){
         Credential credential = this.mapper.mapRequestToModel(request);
 

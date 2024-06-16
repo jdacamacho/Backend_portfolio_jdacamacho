@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -39,6 +40,7 @@ public class OwnerRestController {
     private final ErrorCatcher errorCatcher;
 
     @GetMapping("/adm")
+    @PreAuthorize("hasRole('Administrator')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<OwnerDTOResponse>> index(){
         List<Owner> owners = this.ownerCU.listOwners();
@@ -48,6 +50,7 @@ public class OwnerRestController {
     }
     
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
     @Transactional(readOnly = true)
     public ResponseEntity<OwnerDTOResponse> getOwner(@PathVariable long id){
         Owner owner = this.ownerCU.findOwnerById(id);
@@ -57,6 +60,7 @@ public class OwnerRestController {
     }
 
     @PostMapping("")
+    @Transactional
     public ResponseEntity<?> saveOwner(@Valid @RequestBody OwnerDTORequest request, BindingResult result){
         Owner owner = this.mapper.mapRequestToModel(request);
         
@@ -78,6 +82,8 @@ public class OwnerRestController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
+    @Transactional
     public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody OwnerUpdateDTORequest request, BindingResult result){
         Owner owner = this.mapper.mapRequestToModel(request);
         

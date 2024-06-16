@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +35,7 @@ public class ReservationRestController {
     private final MapperReservationInfrastructureDomainInt mapper;
 
     @GetMapping("/adm")
+    @PreAuthorize("hasRole('Administrator')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ReservationDTOResponse>> index (){
         List<Reservation> reservations = this.reservationCU.listReservations();
@@ -43,6 +45,7 @@ public class ReservationRestController {
     }
 
     @GetMapping("/users/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Client')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ReservationDTOResponse>> indexUserId(@PathVariable long id){
         List<Reservation> reservations = this.reservationCU.listReservationByUserId(id);
@@ -52,6 +55,7 @@ public class ReservationRestController {
     }
 
     @GetMapping("/adm/users/name/")
+    @PreAuthorize("hasRole('Administrator')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ReservationDTOResponse>> indexUserName(@RequestParam String name){
         List<Reservation> reservations = this.reservationCU.listReservationByUserName(name);
@@ -61,6 +65,8 @@ public class ReservationRestController {
     }
 
     @PostMapping("/users/{idUser}/fields/{idField}/schedules/{idSchedule}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Client')")
+    @Transactional
     public ResponseEntity<?> makeReservation(@PathVariable long idUser,@PathVariable long idField ,
                                             @PathVariable long idSchedule){
 
@@ -77,6 +83,8 @@ public class ReservationRestController {
     }
 
     @PatchMapping("/{id}")
+    @PreAuthorize("hasRole('Administrator')")
+    @Transactional
     public ResponseEntity<?> confirmPay(@PathVariable long id){
         Map<String, Object> response = new HashMap<>();
 
@@ -91,6 +99,8 @@ public class ReservationRestController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Client')")
+    @Transactional
     public ResponseEntity<Boolean> cancelReservation(@PathVariable long id){
         boolean deleted = this.reservationCU.cancelReservation(id);
         return ResponseEntity.ok(deleted);

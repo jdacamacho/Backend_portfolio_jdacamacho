@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -39,6 +40,7 @@ public class UserRestController {
     private final ErrorCatcher errorCatcher;
 
     @GetMapping("/adm")
+    @PreAuthorize("hasRole('Administrator')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<UserDTOResponse>> index(){
         List<User> users = this.userCU.listUsers();
@@ -48,6 +50,7 @@ public class UserRestController {
     }
     
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Client')")
     @Transactional(readOnly = true)
     public ResponseEntity<UserDTOResponse> getUser(@PathVariable long id){
         User user = this.userCU.findUserById(id);
@@ -57,6 +60,7 @@ public class UserRestController {
     }
 
     @PostMapping("")
+    @Transactional
     public ResponseEntity<?> saveUser(@Valid @RequestBody UserDTORequest request, BindingResult result){
         User user = this.mapper.mapRequestToModel(request);
         
@@ -78,6 +82,8 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Client')")
+    @Transactional
     public ResponseEntity<?> updateUser(@PathVariable long id, @Valid @RequestBody UserUpdateDTORequest request, BindingResult result){
         User user = this.mapper.mapRequestToModel(request);
         

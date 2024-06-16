@@ -6,6 +6,7 @@ import lombok.Getter;
 
 @Getter
 public class BadCredentialsException extends RuntimeException{
+    
     private final String messageKey;
     private final String code;
 

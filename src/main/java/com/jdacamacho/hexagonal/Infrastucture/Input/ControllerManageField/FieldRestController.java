@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -42,6 +43,7 @@ public class FieldRestController {
     private final ErrorCatcher errorCatcher;
 
     @GetMapping("/adm")
+    @PreAuthorize("hasRole('Administrator')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexField(){
         List<Field> fields = this.fieldCU.listFields();
@@ -51,6 +53,7 @@ public class FieldRestController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
     @Transactional(readOnly = true)
     public ResponseEntity<FieldDTOResponse> getField(@PathVariable long id){
         Field field = this.fieldCU.findFieldById(id);
@@ -60,6 +63,7 @@ public class FieldRestController {
     }
 
     @GetMapping("/owners/id/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexFieldByIDOwner(@PathVariable long id){
         List<Field> fields = this.fieldCU.listFieldsByOwnerId(id);
@@ -69,6 +73,7 @@ public class FieldRestController {
     }
 
     @GetMapping("/name/")
+    @PreAuthorize("hasAnyRole('Administrator', 'Client')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexFieldByPropertyName(@RequestParam String propertyName ){
         List<Field> fields = this.fieldCU.listFieldsByPropertyName(propertyName);
@@ -78,6 +83,7 @@ public class FieldRestController {
     }
 
     @GetMapping("/schedules/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner','Client')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ScheduleDTOResponse>> indexSchedulesField(@PathVariable long id ){
         List<Schedule> schedules = this.fieldCU.getSchedulesById(id);
@@ -87,6 +93,7 @@ public class FieldRestController {
     }
 
     @GetMapping("/schedules/enable/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ScheduleDTOResponse>> enableFieldsSchedule(@PathVariable long id){
         List<Schedule> schedules = this.fieldCU.enableAllSchedules(id);
@@ -96,6 +103,8 @@ public class FieldRestController {
     }
 
     @PostMapping("/{idOwner}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
+    @Transactional
     public ResponseEntity<?> saveField(@PathVariable long idOwner ,@Valid @RequestBody FieldDTORequest request, BindingResult result){
         Field field = this.mapper.mapRequestToModel(request);
         
@@ -117,6 +126,8 @@ public class FieldRestController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
+    @Transactional
     public ResponseEntity<?> updateField(@PathVariable long id ,@Valid @RequestBody FieldDTORequest request, BindingResult result){
         Field field = this.mapper.mapRequestToModel(request);
         
@@ -138,6 +149,8 @@ public class FieldRestController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('Administrator', 'Owner')")
+    @Transactional
     public ResponseEntity<Boolean> deleteField(@PathVariable long id) {
         boolean deleted = this.fieldCU.deleteField(id);
         return ResponseEntity.ok(deleted);
