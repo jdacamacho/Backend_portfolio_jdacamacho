@@ -41,7 +41,7 @@ public class FieldRestController {
     private final MapperFieldInfrastructureDomainInt mapper;
     private final ErrorCatcher errorCatcher;
 
-    @GetMapping("")
+    @GetMapping("/adm")
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexField(){
         List<Field> fields = this.fieldCU.listFields();

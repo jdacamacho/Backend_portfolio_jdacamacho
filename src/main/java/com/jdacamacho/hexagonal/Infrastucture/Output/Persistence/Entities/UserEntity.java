@@ -1,7 +1,12 @@
 package com.jdacamacho.hexagonal.Infrastucture.Output.Persistence.Entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +29,7 @@ import lombok.Data;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @AllArgsConstructor
-public class UserEntity {
+public class UserEntity implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -60,5 +65,14 @@ public class UserEntity {
     public UserEntity(){
         this.roles = new ArrayList<>();
         this.reservations = new ArrayList<>();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for(RoleEntity role : this.getRoles()){
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
     }
 }
