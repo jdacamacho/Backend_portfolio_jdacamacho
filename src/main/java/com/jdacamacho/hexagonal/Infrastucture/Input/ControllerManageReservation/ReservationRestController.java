@@ -33,7 +33,7 @@ public class ReservationRestController {
     private final ManageReservationCUIntPort reservationCU;
     private final MapperReservationInfrastructureDomainInt mapper;
 
-    @GetMapping("")
+    @GetMapping("/adm")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ReservationDTOResponse>> index (){
         List<Reservation> reservations = this.reservationCU.listReservations();
@@ -51,7 +51,7 @@ public class ReservationRestController {
             this.mapper.mapModelToResponse(reservations),HttpStatus.OK);
     }
 
-    @GetMapping("/users/name/")
+    @GetMapping("/adm/users/name/")
     @Transactional(readOnly = true)
     public ResponseEntity<List<ReservationDTOResponse>> indexUserName(@RequestParam String name){
         List<Reservation> reservations = this.reservationCU.listReservationByUserName(name);

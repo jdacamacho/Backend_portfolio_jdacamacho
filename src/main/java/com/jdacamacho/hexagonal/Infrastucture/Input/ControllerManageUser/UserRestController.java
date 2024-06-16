@@ -37,7 +37,7 @@ public class UserRestController {
     private final MapperUserInfrastructureDomainInt mapper;
     private final ErrorCatcher errorCatcher;
 
-    @GetMapping("")
+    @GetMapping("/adm")
     @Transactional(readOnly = true)
     public ResponseEntity<List<UserDTOResponse>> index(){
         List<User> users = this.userCU.listUsers();

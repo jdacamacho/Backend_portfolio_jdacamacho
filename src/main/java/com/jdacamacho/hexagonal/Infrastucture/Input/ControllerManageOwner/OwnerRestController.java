@@ -37,7 +37,7 @@ public class OwnerRestController {
     private final MapperOwnerInfrastructureDomainInt mapper;
     private final ErrorCatcher errorCatcher;
 
-    @GetMapping("")
+    @GetMapping("/adm")
     @Transactional(readOnly = true)
     public ResponseEntity<List<OwnerDTOResponse>> index(){
         List<Owner> owners = this.ownerCU.listOwners();

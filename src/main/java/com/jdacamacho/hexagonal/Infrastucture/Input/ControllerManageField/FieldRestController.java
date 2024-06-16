@@ -68,7 +68,7 @@ public class FieldRestController {
             this.mapper.mapModelToResponse(fields),HttpStatus.OK);
     }
 
-    @GetMapping("/name")
+    @GetMapping("/name/")
     @Transactional(readOnly = true)
     public ResponseEntity<List<FieldDTOResponse>> indexFieldByPropertyName(@RequestParam String propertyName ){
         List<Field> fields = this.fieldCU.listFieldsByPropertyName(propertyName);
