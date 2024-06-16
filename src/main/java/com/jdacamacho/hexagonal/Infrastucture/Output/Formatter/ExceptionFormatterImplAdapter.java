@@ -1,5 +1,6 @@
 package com.jdacamacho.hexagonal.Infrastucture.Output.Formatter;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import com.jdacamacho.hexagonal.Application.Output.ExceptionFormatterIntPort;
@@ -29,6 +30,11 @@ public class ExceptionFormatterImplAdapter implements ExceptionFormatterIntPort{
     @Override
     public void responseNoData(String message) {
         throw new NoDataException(message);
+    }
+
+    @Override
+    public void responseBadCredentials(String message) {
+        throw new BadCredentialsException(message);
     }
     
 }

@@ -5,4 +5,5 @@ public interface ExceptionFormatterIntPort {
     public void responseEntityNotFound(String message);
     public void responseEntityExists(String message);
     public void responseNoData(String message);
+    public void responseBadCredentials(String message);
 }
